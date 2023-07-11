@@ -7,7 +7,7 @@ const data = {
             price: 100,
             token: 'peoduct-a-token',
             brand: 'intel',
-            countInStock: 6,
+            countInStock: 7,
             rating: 2.5,
             numReviews: 100,
             img: "/imgs/intel.jpg"
