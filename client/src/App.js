@@ -5,6 +5,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import SigninPage from "./pages/signinPage";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import SignupPage from "./pages/signupPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/signin" element={<SigninPage />} />
+          <Route path="/signup" element={<SignupPage />} />
         </Routes>
         </main>
       </div>

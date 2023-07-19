@@ -8,10 +8,11 @@ import axios from 'axios';
 import { toast } from'react-toastify';
 import { USER_SIGNIN } from '../reducers/Actions';
 
-const SigninPage = () => {
-
+const SignupPage = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate();
   const {search} = useLocation();
   const redirectInURL = new URLSearchParams(search).get('redirect');
@@ -21,13 +22,12 @@ const SigninPage = () => {
 
   useEffect(() => {
     userInfo && navigate(redirect);
-
   },[navigate, redirect, userInfo])
 
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const {data} = await axios.post('api/users/signin', {email, password});  
+      const {data} = await axios.post('api/users/signup', {email, password});  
       ctxDispatch({
         type: USER_SIGNIN,
         payload: data
@@ -49,8 +49,12 @@ const SigninPage = () => {
     <>
         <Container className='small-container'>
             <Title title="Sign In" ></Title>
-            <h1 className="my-3">Sign In</h1>
+            <h1 className="my-3">Sign Up</h1>
             <Form onSubmit={submitHandler}>
+            <FormGroup className='mb-3' controlId='name'>
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control type='text' required placeholder='Enter your name' onChange={e => setName(e.target.value)}/>
+                </FormGroup>
                 <FormGroup className='mb-3' controlId='email'>
                     <Form.Label>Email</Form.Label>
                     <Form.Control type='email' required placeholder='Enter your email' onChange={e => setEmail(e.target.value)}/>
@@ -59,11 +63,15 @@ const SigninPage = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type='password' required placeholder='Enter your password' onChange={e => setPassword(e.target.value)}/>
                 </FormGroup>
+                <FormGroup className='mb-3' controlId='confirm-password'>
+                    <Form.Label>Confirm Password</Form.Label>
+                    <Form.Control type='password' required placeholder='Confirm password' onChange={e => setConfirmPassword(e.target.value)}/>
+                </FormGroup>
                 <div className='mb-3'>
-                    <Button type="submit">Sign In</Button>
+                    <Button type="submit">Sign Up</Button>
                 </div>
                 <div className='mb-3'>
-                    New Customer? <Link to={'/signup?redirect=${redirect}'}>Create an Account</Link>
+                    Already have an account? <Link to={'/signin?redirect=${redirect}'}>Sign in</Link>
                 </div>
             </Form>
         </Container>
@@ -71,4 +79,4 @@ const SigninPage = () => {
   )
 }
 
-export default SigninPage
+export default SignupPage
