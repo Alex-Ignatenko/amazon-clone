@@ -10,7 +10,7 @@ const NavBar = () => {
             <header className="App-header">
                 <Navbar bg="dark" variant="dark">
                     <Link className="ms-5" onClick={() => {navigate(-1);}}>Back</Link>
-                    <Container className="container">
+                    <Container>
                         <LinkContainer to="/">
                             <Navbar.Brand>
                                 <img src="/imgs/amazonlogo.png" width={100} alt="AMZN" />
