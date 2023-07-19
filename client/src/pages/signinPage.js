@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from'react-router-dom';
 import { store } from '../context/store';
 import axios from 'axios';
 import { toast } from'react-toastify';
+import { USER_SIGNIN } from '../reducers/Actions';
 
 const SigninPage = () => {
 
@@ -28,7 +29,7 @@ const SigninPage = () => {
     try {
       const {data} = await axios.post('api/users/signin', {email, password});  
       ctxDispatch({
-        type: 'USER_SIGNIN',
+        type: USER_SIGNIN,
         payload: data
       });
       navigate(redirect);
