@@ -3,15 +3,15 @@ import NavBar from "./components/NavBar/NavBar.jsx";
 import HomePage from "./pages/homePage";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import SigninPage from "./pages/signinPage";
+import SignupPage from "./pages/signupPage";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import SignupPage from "./pages/signupPage";
+
 
 function App() {
   return (
     <BrowserRouter>
       <NavBar />
-      <div className="App">
       <ToastContainer position="bottom-center" limit={1}/>
         <main>
         <Routes>
@@ -20,7 +20,6 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
         </Routes>
         </main>
-      </div>
     </BrowserRouter>
   );
 }

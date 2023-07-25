@@ -45,7 +45,7 @@ orderRouter.post(
         }
         catch (err) 
         {
-            console.sendStatus(500);
+            res.status(500).send({ message: err.message });
         }
     })
 );

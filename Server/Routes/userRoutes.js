@@ -6,32 +6,25 @@ import { generateToken, isAuth } from "../utils.js";
 
 const userRouter = express.Router();
 
-userRouter.post("/signin" , expressAsyncHandler(async (req, res) => {
-const user = await User.findOne({email: req.body.email});
-if(user) {
-    if(bcrypt.compareSync(req.body.password, user.password)) {
-        res.send({_id : user._id, name: user.name, email: user.email, token: generateToken(user)})
+userRouter.post('/signin', expressAsyncHandler(async (req, res) => {
+    const user = await User.findOne({ email: req.body.email });
+    console.log(user);
+    if (user && await bcrypt.compare(req.body.password, user.password)) {
+        res.send({ _id: user._id, name: user.name, email: user.email, token: generateToken(user) })
         return;
     }
-}
-res.status(401).send({message : "Invalid Credentials"});
+    res.status(401).send({ message: 'Invalid Credentials' });
 }))
 
 userRouter.post("/signup" , expressAsyncHandler(async (req, res) => {
-    let user;
-    const newUser = new User({name: req.body.name , email : req.body.email, password: bcrypt.hashSync(req.body.password)});
-    try{
-        user = await newUser.save();
-    }
-    catch(err){
-            res.status(400).send({message : "email already exists"});
-            return;
-        }
-    res.send({_id : user._id, name: user.name, email: user.email, token: generateToken(user)})
+    const newUser = new User({ name: req.body.name, email: req.body.email, password: bcrypt.hashSync(req.body.password) });
+    const user = await newUser.save();
+    res.send({ _id: user._id, name: user.name, email: user.email, token: generateToken(user) })
 }))
 
+//test if the isAuth middleware is working
 userRouter.get("/" , isAuth , async (req, res) => {
- res.status(200).send({message : "ok dvir!"});   
+ res.status(200).send({message : "ok!"});   
 }) 
 
 export default userRouter;

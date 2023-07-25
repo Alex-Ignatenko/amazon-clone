@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
-import { Button, Container, Form, FormGroup, FormLabel, Toast } from 'react-bootstrap'
-import { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react'
+import { Button, Container, Form } from 'react-bootstrap'
 import Title from '../components/Title/Title';
 import { Link, useLocation, useNavigate } from'react-router-dom';
 import { store } from '../context/store';
@@ -27,12 +26,9 @@ const SigninPage = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const {data} = await axios.post('api/users/signin', {email, password});  
-      ctxDispatch({
-        type: USER_SIGNIN,
-        payload: data
-      });
-      navigate(redirect);
+      const {data} = await axios.post('/users/signin', {email, password});  
+      ctxDispatch({type: USER_SIGNIN,payload: data});
+      navigate(redirect || '/');
     } catch (error) {
         toast.error(error.message, {
             theme: "colored",
@@ -51,19 +47,19 @@ const SigninPage = () => {
             <Title title="Sign In" ></Title>
             <h1 className="my-3">Sign In</h1>
             <Form onSubmit={submitHandler}>
-                <FormGroup className='mb-3' controlId='email'>
+                <Form.Group className='mb-3' controlId='email'>
                     <Form.Label>Email</Form.Label>
-                    <Form.Control type='email' required placeholder='Enter your email' onChange={e => setEmail(e.target.value)}/>
-                </FormGroup>
-                <FormGroup className='mb-3' controlId='password'>
+                    <Form.Control type='email' required placeholder='Enter your email' onChange={(e) => setEmail(e.target.value)}/>
+                </Form.Group>
+                <Form.Group className='mb-3' controlId='password'>
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type='password' required placeholder='Enter your password' onChange={e => setPassword(e.target.value)}/>
-                </FormGroup>
+                    <Form.Control type='password' required placeholder='Enter your password' onChange={(e) => setPassword(e.target.value)}/>
+                </Form.Group>
                 <div className='mb-3'>
-                    <Button type="submit">Sign In</Button>
+                    <Button type="submit" variant="primary">Sign In</Button>
                 </div>
                 <div className='mb-3'>
-                    New Customer? <Link to={'/signup?redirect=${redirect}'}>Create an Account</Link>
+                    New Customer? <Link to={`/signup?redirect=${redirect}`}> Create an Account</Link>
                 </div>
             </Form>
         </Container>

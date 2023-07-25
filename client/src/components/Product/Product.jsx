@@ -19,7 +19,7 @@ const Product = ({product}) => {
       <Link to={`/product/${product.token}`}>
         <Card.Img variant="top" src={product.image } alt={product.title} onError={replaceImage} className='card-image-page' /> 
         <Card.Body className='card-body'>
-          <Card.Title className='text-center'>{product.title}</Card.Title>
+          <Card.Title className='text-shortner'>{product.title}</Card.Title>
           <Rating rating={product.rating.rate} numReviews={product.rating.count}></Rating>
           <Card.Text>{product.price}$</Card.Text>
             {product.countInStock === 0 ? (<Button variant="danger" disabled>Out of Stock</Button>): 
