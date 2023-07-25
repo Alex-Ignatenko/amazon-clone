@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { Navbar, Container, Badge } from "react-bootstrap";
+import { Navbar, Container, Badge, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link, useNavigate } from "react-router-dom";
 import "./NavBar.css";
 import { store } from "../../context/store";
+import { USER_SIGNOUT } from "../../reducers/Actions";
 
 const NavBar = () => {
 
@@ -13,8 +14,7 @@ const NavBar = () => {
     const {cartItems} = cart;
 
     const signOutHandler = () => {
-        localStorage.removeItem("userInfo");
-        navigate("/");
+        ctxDispatch({type:USER_SIGNOUT})
      };
 
     return (
@@ -34,16 +34,27 @@ const NavBar = () => {
                         <Link to="/cart" className="nav-link me-4 ms-4">
                             <i className="fas fa-shopping-cart fa-lg text-white"></i>
                             {cartItems.length > 0 && (
-                                <Badge pill bg="danger">
+                                <Badge pill bg="warning">
                                     {" "}
                                     {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
                                 </Badge>
                             )}
+                            <span className="text-white">{" "}Cart</span>
                         </Link>
-                        <Link to="/signin" className="nav-link me-4 ms-4">Sign In</Link>
-                        <Link to="/signup" className="nav-link me-4 ms-4">Sign Up</Link>
-                        <button className="nav-link me-4 ms-4" onClick={signOutHandler}>Sign out</button>
+                        {userInfo? (
+                            <NavDropdown className="me-4 text-white" title={userInfo.name}>
+                               <Link to="#signout" onClick={signOutHandler} className="dropdown-item">Sign out</Link>     
+                            </NavDropdown>
+                        ):(
+                            <NavDropdown className="me-4 text-white" title="sign up">
+                                <Link to="/signin" className="dropdown-item">Sign in</Link>
+                                <NavDropdown.Divider/>
+                                <Link to="/signup" className="dropdown-item">Sign up</Link>
+                            </NavDropdown>
+                            
+                        )}
                     </Container>
+
                 </Navbar>
             </header>
         </>

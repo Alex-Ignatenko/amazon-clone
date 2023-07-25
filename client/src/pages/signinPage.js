@@ -23,6 +23,16 @@ const SigninPage = () => {
 
   },[navigate, redirect, userInfo])
 
+  const errSettings = {
+    theme: "colored",
+    hideProgressBar: true,
+    autoClose: 3000,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+  }
+
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -30,15 +40,7 @@ const SigninPage = () => {
       ctxDispatch({type: USER_SIGNIN,payload: data});
       navigate(redirect || '/');
     } catch (error) {
-        toast.error(error.message, {
-            theme: "colored",
-            hideProgressBar: true,
-            autoClose: 3000,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-          });
+      toast.error(error.message, errSettings);
     }
   }
   return (

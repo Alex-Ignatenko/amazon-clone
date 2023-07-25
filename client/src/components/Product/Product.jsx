@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button,Card} from "react-bootstrap"
 import { Link } from "react-router-dom";
 import Rating from '../Rating/Rating';
+import { addToCartHandler } from '../../services/AddToCart';
+import { store } from "../../context/store";
 import './Product.css'
 
 const Product = ({product}) => {
 
-  const addToCartHandler = (product) => {
-    console.log(product);
-  }
+  const {state,dispatch: ctxDispatch} = useContext(store);
+  const { cart: { cartItems } } = state;
 
   const replaceImage = (error) => {
     error.target.src = "/imgs/Image_not_available.png";
@@ -23,7 +24,7 @@ const Product = ({product}) => {
           <Rating rating={product.rating.rate} numReviews={product.rating.count}></Rating>
           <Card.Text>{product.price}$</Card.Text>
             {product.countInStock === 0 ? (<Button variant="danger" disabled>Out of Stock</Button>): 
-              (<Button className='btn-primary' onClick={() => addToCartHandler(product)}>Add to cart</Button>)}
+              (<Button className='btn-primary' onClick={() => addToCartHandler(product,cartItems,ctxDispatch)}>Add to cart</Button>)}
         </Card.Body>
       </Link>
     </Card>

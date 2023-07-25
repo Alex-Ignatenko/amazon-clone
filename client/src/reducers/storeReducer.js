@@ -5,8 +5,8 @@ export const StoreReducer = (state, {type,payload}) => {
         case ADD_TO_CART:
             {
                 const newItem = payload;
-                const existingItem = state.cart.cartItems.find(item => item.id === newItem.id);
-                const cartItems = existingItem? state.cart.cartItems.map(item => item._id === existingItem._id? newItem : item) : [...state.cart.cartItems, newItem];
+                const existingItem = state.cart.cartItems.find((item) => item._id === newItem._id);
+                const cartItems = existingItem ? state.cart.cartItems.map(item => item._id === existingItem._id ? newItem : item) : [...state.cart.cartItems, newItem];
                 localStorage.setItem('cartItems', JSON.stringify(cartItems));
                 return {
                     ...state,
