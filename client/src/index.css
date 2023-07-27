@@ -14,6 +14,11 @@ header a {
    text-decoration: none; 
 }
 
+.header-text {
+  color: #ffffff;
+  font-weight: bold;
+}
+
 main {
   width: min(85rem, 100% - 4rem);
   margin-inline: auto;
@@ -25,10 +30,19 @@ code {
     monospace;
 }
 
-.rating span {color: #ffc000;}
+.rating span {
+  color: #ffc000;
+}
+
 .btn-primary,
-.btn-outline-primary {background-color: #f0c040;color: #000000;border-width: 0px;}
+.btn-outline-primary {
+  background-color: #f0c040;
+  color: #000000;
+  border-width: 0px;
+}
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-outline-primary:hover,
-.btn-outline-primary:focus {background-color: #d3a62c;}
+.btn-outline-primary:focus {
+  background-color: #d3a62c;
+}

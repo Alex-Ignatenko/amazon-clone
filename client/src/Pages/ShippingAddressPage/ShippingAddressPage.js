@@ -1,33 +1,35 @@
 import React, {useContext, useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
-import { store } from '../context/store';
-import { SAVE_SHIPPING_ADDRESS } from '../reducers/Actions'
-import Title from '../components/Title/Title';
-import CheckoutSteps from '../components/CheckoutSteps/CheckoutSteps';
+import { store } from '../../context/store';
+import { SAVE_SHIPPING_ADDRESS } from '../../Reducers/Actions'
+import Title from '../../components/Title/Title';
+import CheckoutSteps from '../../components/CheckoutSteps/CheckoutSteps';
 import { Button, Form } from 'react-bootstrap';
 
 const ShippingAddressPage = () => {
-
-    const navigate = useNavigate()
+    
     const {state, dispatch: ctxDispatch} = useContext(store)
+    //States for shipping address
     const {userInfo, cart: {shippingAddress}} = state;
     const [fullName, setFullName] = useState(shippingAddress.fullName || '');
     const [address, setAddress] = useState(shippingAddress.address || '');
     const [city, setCity] = useState(shippingAddress.city || '');
     const [postalCode, setPostalCode] = useState(shippingAddress.postalCode || '');
-    const [country, setCountry] = useState(shippingAddress.country || '');   
+    const [country, setCountry] = useState(shippingAddress.country || '');
+    
+    const navigate = useNavigate()
 
     useEffect(() => {
         if(!userInfo) {
             navigate('signing?=redirect=/shipping');
         }
-    }, [])
+    }, []);
 
     const submitHandler = (e) => {
         e.preventDefault();
         ctxDispatch({type: SAVE_SHIPPING_ADDRESS, payload: {fullName, address, city,postalCode,country}});
         navigate('/payment');
-    }
+    };
 
   return (
     <>
@@ -66,7 +68,7 @@ const ShippingAddressPage = () => {
                     <Form.Control type="text" placeholder="Enter Country" required value={country} onChange={e => setCountry(e.target.value)}/>
                 </Form.Group>
                 <div className='mb-3'>
-                    <Button variant="primary" type="submit" >Continue</Button>
+                    <Button variant="primary" type="submit">Continue</Button>
                 </div>
             </Form>
         </div>

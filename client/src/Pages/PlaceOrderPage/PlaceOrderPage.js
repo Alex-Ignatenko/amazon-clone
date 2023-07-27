@@ -1,28 +1,17 @@
 import React, {useContext, useEffect, useReducer, useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { store } from '../context/store';
-import { GET_REQUEST, GET_SUCCESS, GET_FAIL, CLEAR_CART } from '../reducers/Actions'
-import Title from '../components/Title/Title';
-import CheckoutSteps from '../components/CheckoutSteps/CheckoutSteps';
+import { store } from '../../context/store';
+import { PlaceOrderPageReducer } from '../../Reducers/PlaceOrderPageReducer';
+import { GET_REQUEST, GET_SUCCESS, GET_FAIL, CLEAR_CART } from '../../Reducers/Actions'
+import Title from '../../components/Title/Title';
+import CheckoutSteps from '../../components/CheckoutSteps/CheckoutSteps';
 import { Button, Card,ListGroup ,Row, Col } from 'react-bootstrap';
 import  {toast}  from 'react-toastify';
 import axios from 'axios';
-import Loading from '../components/Loading';
-import './placeOrderPage.css';
+import Loading from '../../components/Loading';
+import { ToastErrorSettings } from '../../Services/ToastErrorSettings';
+import './PlaceOrderPage.css';
 
-
-
-const reducer = (state, { type }) => {
-    switch (type) {
-        case GET_REQUEST:
-            return {...state, loading: true};
-        case GET_SUCCESS:
-            return {...state, loading: false};
-        case GET_FAIL:
-            return {...state, loading: false};
-        default:
-            return state
-    }};
 
 const TAX_RATE = 0.17; 
 const SHIPPING_RATE_UNDER = 0.1; 
@@ -30,29 +19,20 @@ const SHIPPING_RATE_ABOVE = 0.02;
 
 const PlaceOrderPage = () => {
 
-const navigate = useNavigate()
-const [ {loading}, dispatch] = useReducer(reducer, {loading: false}); 
+const [ {loading}, dispatch] = useReducer(PlaceOrderPageReducer, {loading: false}); 
 const { state, dispatch: ctxDispatch } = useContext(store);
 const { cart, userInfo } = state;
 const { paymentMethod } = cart;
 
-const errSettings = {
-    theme: "colored",
-    hideProgressBar: true,
-    autoClose: 3000,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-}
+const navigate = useNavigate()
 
 const submitOrderHandler = async (e) => {
     
     try {
         e.preventDefault();
-        dispatch({
-            type: GET_REQUEST
-        });
+
+        dispatch({type: GET_REQUEST});
+
         const data = await axios.post('/orders', {
             orderItems: cart.cartItems,
             shippingAddress: cart.shippingAddress,
@@ -66,26 +46,19 @@ const submitOrderHandler = async (e) => {
                 authorization: userInfo.token,
             }
         });
-        dispatch({
-            type: GET_SUCCESS
-        });
-        ctxDispatch({
-            type: CLEAR_CART 
-        });
+
+        dispatch({type: GET_SUCCESS});    
+        ctxDispatch({type: CLEAR_CART });
         navigate(`/order/${data.order._id}`);
 
     } catch (error) {
-        dispatch({
-            type: GET_FAIL
-        });
-        toast.error(error.message,errSettings);
+        dispatch({type: GET_FAIL});
+        toast.error(error.message,ToastErrorSettings);
     }
 };
 
 const round2 = (number) => {
-
-   return Math.round(number * 100 +Number.EPSILON) / 100;
-   
+   return Math.round(number * 100 +Number.EPSILON) / 100;  
 };
 
 cart.itemsPrice = round2(cart.cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0));
@@ -101,7 +74,6 @@ useEffect(() => {
 
 return (
     <>
-        <div>
         <Title title="Orders Summary" />
         <CheckoutSteps step1 step2 step3 step4 />
         <h1 className="my-3">Order Summary</h1>
@@ -143,11 +115,7 @@ return (
                     <ListGroup.Item key={item._id}>
                         <Row className="align-items-center">
                         <Col md={6}>
-                            <img
-                            src={item.image}
-                            alt={item.title}
-                            className="img-fluid rounded img-thumbnail mt-2"
-                            />
+                            <img src={item.image} alt={item.title} className="img-fluid rounded img-thumbnail mt-2"/>
                             <Link to={`/product/${item.token}`} className='text-shortner mt-2 mb-2'>{item.title}</Link>
                         </Col>
                         <Col md={3}>
@@ -195,22 +163,17 @@ return (
                     </ListGroup.Item>
                     <ListGroup.Item>
                     <div className="d-grid">
-                        <Button
-                        type="button"
-                        onClick={submitOrderHandler}
-                        disabled={cart.cartItems.length === 0}
-                        >
-                        Submit
-                        </Button>
+                        <Button type="button" onClick={submitOrderHandler} disabled={cart.cartItems.length === 0}>Submit</Button>
                     </div>
-                    {loading && <Loading />}
+                    <div>
+                        {loading && <Loading />}
+                    </div>
                     </ListGroup.Item>
                 </ListGroup>
                 </Card.Body>
             </Card>
             </Col>
         </Row>
-        </div>
     </>
   )
 }

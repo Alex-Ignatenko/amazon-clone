@@ -1,37 +1,33 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Button, Container, Form } from 'react-bootstrap'
-import Title from '../components/Title/Title';
+import Title from '../../components/Title/Title';
 import { Link, useLocation, useNavigate } from'react-router-dom';
-import { store } from '../context/store';
+import { store } from '../../context/store';
 import axios from 'axios';
 import { toast } from'react-toastify';
-import { USER_SIGNIN } from '../reducers/Actions';
+import { USER_SIGNIN } from '../../Reducers/Actions';
+import { ToastErrorSettings } from '../../Services/ToastErrorSettings';
 
 const SigninPage = () => {
 
+  //states for user information
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const navigate = useNavigate();
   const {search} = useLocation();
+
   const redirectInURL = new URLSearchParams(search).get('redirect');
   const redirect = redirectInURL? redirectInURL : '/';
+
   const {state,dispatch: ctxDispatch} = useContext(store);
   const {userInfo} = state;
 
   useEffect(() => {
     userInfo && navigate(redirect);
+  },[navigate, redirect, userInfo]);
 
-  },[navigate, redirect, userInfo])
 
-  const errSettings = {
-    theme: "colored",
-    hideProgressBar: true,
-    autoClose: 3000,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-  }
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -40,9 +36,10 @@ const SigninPage = () => {
       ctxDispatch({type: USER_SIGNIN,payload: data});
       navigate(redirect || '/');
     } catch (error) {
-      toast.error(error.message, errSettings);
+      toast.error("Login Error", ToastErrorSettings);
     }
-  }
+  };
+
   return (
     <>
         <Container className='small-container'>

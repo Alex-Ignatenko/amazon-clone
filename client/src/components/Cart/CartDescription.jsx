@@ -1,6 +1,6 @@
 
 import { Badge, Button, Card, Col, ListGroup, Row } from "react-bootstrap";
-import { addToCartHandler } from "../../services/AddToCart";
+import { addToCartHandler } from "../../Services/AddToCart";
 
 function CartDescription({ product, addToCart }) {
     return (
@@ -17,11 +17,7 @@ function CartDescription({ product, addToCart }) {
                         <Row>
                             <Col>Status:</Col>
                             <Col>
-                                {product.countInStock > 0 ?
-                                    <Badge bg='success'>In Stock</Badge>
-                                    :
-                                    <Badge bg='danger'>Not in Stock</Badge>
-                                }
+                                {product.countInStock > 0 ? <Badge bg='success'>In Stock</Badge> : <Badge bg='danger'>Not in Stock</Badge> }
                             </Col>
                         </Row>
                     </ListGroup.Item>
@@ -29,11 +25,7 @@ function CartDescription({ product, addToCart }) {
                     {product.countInStock > 0 && (
                         <ListGroup.Item>
                             <div className='d-grid'>
-                                <Button
-                                    onClick={() => addToCart()}
-                                    variant='primary'>
-                                    Add to cart
-                                </Button>
+                                <Button onClick={() => addToCart()} variant='primary'>Add to cart</Button>
                             </div>
                         </ListGroup.Item>
                     )}

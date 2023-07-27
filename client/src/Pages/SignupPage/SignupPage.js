@@ -1,13 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Button, Container, Form} from 'react-bootstrap'
-import Title from '../components/Title/Title';
+import Title from '../../components/Title/Title';
 import { Link, useLocation, useNavigate } from'react-router-dom';
-import { store } from '../context/store';
+import { store } from '../../context/store';
 import axios from 'axios';
 import { toast } from'react-toastify';
-import { USER_SIGNIN } from '../reducers/Actions';
+import { USER_SIGNIN } from '../../Reducers/Actions';
+import { ToastErrorSettings } from '../../Services/ToastErrorSettings';
 
 const SignupPage = () => {
+
+  //states for user information
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,29 +18,22 @@ const SignupPage = () => {
 
   const navigate = useNavigate();
   const {search} = useLocation();
-  const redirectInURL = new URLSearchParams(search).get('redirect');
+
+  const redirectInURL = new URLSearchParams(search).get('redirect'); //Current locations URL
   const redirect = redirectInURL? redirectInURL : '/';
+
   const {state,dispatch: ctxDispatch} = useContext(store);
   const {userInfo} = state;
 
-  const errSettings = {
-    theme: "colored",
-    hideProgressBar: true,
-    autoClose: 3000,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-  }
-
   useEffect(() => {
-    userInfo && navigate(redirect);
-  },[navigate, redirect, userInfo])
+    userInfo && navigate(redirect); //If user is logged in redirect to redirect url
+  
+  },[navigate, redirect, userInfo]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-        toast.error('Passwords do not match', errSettings);
+        toast.error('Passwords do not match', ToastErrorSettings);
         return;
     }
     try {
@@ -45,9 +41,10 @@ const SignupPage = () => {
       ctxDispatch({type: USER_SIGNIN,payload: data});
       navigate(redirect || '/');
     } catch (error) {
-        toast.error(error.message, errSettings);
+        toast.error("Login error", ToastErrorSettings);
     }
-  }
+  };
+
   return (
     <>
         <Container className='small-container'>

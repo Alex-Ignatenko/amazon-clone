@@ -1,10 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useReducer } from'react';
-import Products from '../components/Products/Products.jsx';
-import MsgBox from "../components/MsgBox";
-import  Loading  from "../components/Loading";
-import { homePageReducer, initState } from '../reducers/homePageReducer.js';
-import { GET_REQUEST, GET_SUCCESS, GET_FAIL } from "../reducers/Actions";
+import Products from '../../components/Products/Products.jsx';
+import MsgBox from "../../components/MsgBox.jsx";
+import  Loading  from "../../components/Loading.jsx";
+import { homePageReducer, initState } from '../../Reducers/HomePageReducer.js';
+import { GET_REQUEST, GET_SUCCESS, GET_FAIL } from '../../Reducers/Actions';
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -25,7 +25,7 @@ const HomePage = () => {
     },[]);
 
     return (
-        <>
+      <>
         <h1 className="my-3">Products</h1>
         <div className="products">
           {loading ? (

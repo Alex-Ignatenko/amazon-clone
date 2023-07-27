@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Button,Card} from "react-bootstrap"
 import { Link } from "react-router-dom";
 import Rating from '../Rating/Rating';
-import { addToCartHandler } from '../../services/AddToCart';
+import { addToCartHandler } from '../../Services/AddToCart';
 import { store } from "../../context/store";
 import './Product.css'
 
@@ -11,14 +11,16 @@ const Product = ({product}) => {
   const {state,dispatch: ctxDispatch} = useContext(store);
   const { cart: { cartItems } } = state;
 
-  const replaceImage = (error) => {
-    error.target.src = "/imgs/Image_not_available.png";
-  }
-  
+
   return (
     <Card className="product-card">
       <Link to={`/product/${product.token}`}>
-        <Card.Img variant="top" src={product.image } alt={product.title} onError={replaceImage} className='card-image-page' /> 
+        <Card.Img variant="top" src={product.image } alt={product.title}
+                onError={({ currentTarget }) => {
+                  currentTarget.onerror = null; // prevents looping
+                  currentTarget.src="image_path_here";
+                }} 
+                className='card-image-page' /> 
       </Link>
         <Card.Body className='card-body'>
           <Link to={`/product/${product.token}`}> 

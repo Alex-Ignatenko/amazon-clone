@@ -1,17 +1,17 @@
 import "./App.css";
-import NavBar from "./components/NavBar/NavBar.jsx";
-import HomePage from "./pages/homePage";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import SigninPage from "./pages/signinPage";
-import SignupPage from "./pages/signupPage";
+import { Container } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import CartPage from "./pages/cartPage";
-import ShippingAddressPage from "./pages/ShippingAddressPage";
-import { Container } from "react-bootstrap";
-import PaymentPage from "./pages/paymentPage";
-import PlaceOrderPage from "./pages/placeOrderPage";
-import ProductPage from "./pages/productPage";
+import NavBar from "./components/NavBar/NavBar.jsx";
+import HomePage from "./Pages/HomePage/HomePage";
+import SigninPage from "./Pages/SigninPage/SigninPage";
+import SignupPage from "./Pages/SignupPage/SignupPage";
+import CartPage from "./Pages/CartPage/CartPage";
+import ShippingAddressPage from "./Pages/ShippingAddressPage/ShippingAddressPage";
+import PaymentPage from "./Pages/PaymentPage/PaymentPage";
+import PlaceOrderPage from "./Pages/PlaceOrderPage/PlaceOrderPage";
+import ProductPage from "./Pages/ProductPage/ProductPage";
 
 function App() {
   return (

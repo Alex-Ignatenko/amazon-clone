@@ -4,7 +4,9 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Link, useNavigate } from "react-router-dom";
 import "./NavBar.css";
 import { store } from "../../context/store";
-import { USER_SIGNOUT } from "../../reducers/Actions";
+import { USER_SIGNOUT } from "../../Reducers/Actions";
+
+
 
 const NavBar = () => {
 
@@ -28,7 +30,7 @@ const NavBar = () => {
                                 <img src="/imgs/amazonlogo.png" width={100} alt="AMZN" />
                             </Navbar.Brand>
                         </LinkContainer>
-                        <nav className="d-flex mx-auto align-items-center">
+                        <nav className="d-flex mx-auto align-items-center header-text">
                             Search{" "}<input type="text" className="search-box"></input>
                         </nav>
                         <Link to="/cart" className="nav-link me-4 ms-4">
@@ -39,14 +41,14 @@ const NavBar = () => {
                                     {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
                                 </Badge>
                             )}
-                            <span className="text-white">{" "}Cart</span>
+                            <span className=" header-text">{" "}Cart</span>
                         </Link>
                         {userInfo? (
-                            <NavDropdown className="me-4 text-white" title={userInfo.name}>
+                            <NavDropdown className="me-4 header-text" title={userInfo.name}>
                                <Link to="#signout" onClick={signOutHandler} className="dropdown-item">Sign out</Link>     
                             </NavDropdown>
                         ):(
-                            <NavDropdown className="me-4 text-white" title="sign up">
+                            <NavDropdown className="me-4 header-text" title="sign up">
                                 <Link to="/signin" className="dropdown-item">Sign in</Link>
                                 <NavDropdown.Divider/>
                                 <Link to="/signup" className="dropdown-item">Sign up</Link>

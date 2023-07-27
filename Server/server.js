@@ -2,10 +2,10 @@ import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import userRouter from './Routes/userRoutes.js';
-import productRouter from './Routes/productRoutes.js';
-import orderRouter from './Routes/orderRoutes.js';
-import { seedRouter } from './Routes/seedRoutes.js';
+import userRouter from './Routes/UserRoutes.js';
+import productRouter from './Routes/ProductRoutes.js';
+import orderRouter from './Routes/OrderRoutes.js';
+import seedRouter  from './Routes/SeedRoutes.js';
 
 dotenv.config();
 
