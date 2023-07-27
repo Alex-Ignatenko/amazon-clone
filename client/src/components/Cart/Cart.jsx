@@ -16,7 +16,7 @@ const Cart = ({cartItems, updateCartHandler, removeItemHandler}) => {
                         <Row className="align-items-center">
                             <Col md={4}>
                                 <img src={item.image} alt={item.name}  className='img-fluid rounded img-thumbnail'/>
-                                <Link to={`/product/${item.token}`}>{item.name}</Link>
+                                <Link className="text-shortner" to={`/product/${item.token}`}>{item.title}</Link>
                             </Col>
                             <Col md={3}>
                                 <Button onClick={() => {updateCartHandler(item,item.quantity -1)}} variant='light' disabled={item.quantity === 1}> 
@@ -30,7 +30,10 @@ const Cart = ({cartItems, updateCartHandler, removeItemHandler}) => {
                                 </Button>
                                 {' '}
                             </Col>
-                            <Col md={3}>
+                            <Col md={2}>
+                                {item.price}$
+                            </Col>
+                            <Col md={2}>
                                 <Button onClick={() => {removeItemHandler(item)}} variant='light'> 
                                     <i className="fas fa-trash"></i>
                                 </Button>

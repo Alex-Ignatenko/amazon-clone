@@ -19,14 +19,17 @@ const Product = ({product}) => {
     <Card className="product-card">
       <Link to={`/product/${product.token}`}>
         <Card.Img variant="top" src={product.image } alt={product.title} onError={replaceImage} className='card-image-page' /> 
+      </Link>
         <Card.Body className='card-body'>
-          <Card.Title className='text-shortner'>{product.title}</Card.Title>
+          <Link to={`/product/${product.token}`}> 
+            <Card.Title className='text-shortner'>{product.title}</Card.Title>
+          </Link>
           <Rating rating={product.rating.rate} numReviews={product.rating.count}></Rating>
           <Card.Text>{product.price}$</Card.Text>
             {product.countInStock === 0 ? (<Button variant="danger" disabled>Out of Stock</Button>): 
               (<Button className='btn-primary' onClick={() => addToCartHandler(product,cartItems,ctxDispatch)}>Add to cart</Button>)}
         </Card.Body>
-      </Link>
+
     </Card>
   )
 }

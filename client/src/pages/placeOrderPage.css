@@ -1,0 +1,18 @@
+.summary-card {
+ height: 20rem;
+}
+.items-card{
+    height: fit-content;
+}
+.items-card img{
+    height: 15rem;
+}
+
+.text-shortner{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}

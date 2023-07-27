@@ -5,7 +5,7 @@ import './Total.css'
 const Total = ({cartItems, checkoutHandler}) => {
   return (
     <Card>
-        <Card.Body>
+        <Card.Body className='subtotal-card-body'>
             <ListGroup variant="flush">
                 <ListGroup.Item>
                     <h3>Subtotal:
