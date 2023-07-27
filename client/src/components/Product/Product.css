@@ -1,0 +1,43 @@
+:root{
+    --card-height: 500px
+}
+
+.product-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: var(--card-height);
+    transition: box-shadow 0.2s ease-in-out, scale 0.2s ease-in-out;
+    box-shadow: none;
+    scale: 1;
+}
+.product-card:hover{
+    box-shadow: 10px 10px 10px #888;
+    scale: 1.02;
+}
+.product-card a{
+    text-decoration: none;
+}
+.card-image-page{
+    padding: 15px;
+    max-width: auto;
+    max-height: 100%;
+    height: calc(var(--card-height)*0.6);
+    object-fit:contain;
+}
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(var(--card-height)*0.4 );
+    text-align: center;
+}
+
+.text-shortner{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
