@@ -20,7 +20,7 @@ const Product = ({product}) => {
                   currentTarget.onerror = null; // prevents looping
                   currentTarget.src="image_path_here";
                 }} 
-                className='card-image-page' /> 
+                className='card-image-page mt-0.5' /> 
       </Link>
         <Card.Body className='card-body'>
           <Link to={`/product/${product.token}`}> 

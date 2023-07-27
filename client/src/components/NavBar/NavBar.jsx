@@ -36,7 +36,7 @@ const NavBar = () => {
                         <Link to="/cart" className="nav-link me-4 ms-4">
                             <i className="fas fa-shopping-cart fa-lg text-white"></i>
                             {cartItems.length > 0 && (
-                                <Badge pill bg="warning">
+                                <Badge pill bg="" style={{backgroundColor: '#ddad2b'}}>
                                     {" "}
                                     {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
                                 </Badge>

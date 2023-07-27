@@ -9,11 +9,12 @@
 }
 
 .checkout-steps > div.active {
-    border-bottom: 0.2rem solid #ffc000;
-    color: #ffc000;
+    border-bottom: 0.2rem solid #f0ba24;
+    color: #f0ba24;
+    font-weight: bold; 
 }
 
 .checkout-steps > div.active > a {
     text-decoration: none;
-    color: #ffc000;
+    color: #f0ba24;
 }

@@ -9,7 +9,6 @@ import axios from 'axios';
 import Loading from '../../components/Loading';
 import MsgBox from '../../components/MsgBox';
 import { addToCartHandler } from '../../Services/AddToCart';
-import CartDescription from '../../components/Cart/CartDescription';
 import ProductDescription from '../../components/Product/ProductDescription';
 import { ToastErrorSettings } from '../../Services/ToastErrorSettings';
 
@@ -54,20 +53,11 @@ const ProductPage = () => {
           ) : (
             <div>
               <Row>
-                <Col md={6}>
-                  <img
-                    src={`${product.image}`}
-                    alt={product.title}
-                    className="card-img-top card-image"
-                  />
+                <Col md={5}>
+                  <img src={`${product.image}`} alt={product.title} className="card-img-top card-image"/>
                 </Col>
-    
-                <Col md={3}>
-                  <ProductDescription {...product} />
-                </Col>
-    
-                <Col md={3}>
-                  <CartDescription product={product} addToCart={addToCart} />
+                <Col md={7}>
+                  <ProductDescription product={product} addToCart={addToCart} />
                 </Col>
               </Row>
             </div>

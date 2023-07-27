@@ -8,10 +8,13 @@ body {
   background-color: ghostwhite;
 }
 
+a {
+  text-decoration: none;
+}
+
 header a {
    color: #ffffff;
-   font-weight: bold;
-   text-decoration: none; 
+   font-weight: bold; 
 }
 
 .header-text {
