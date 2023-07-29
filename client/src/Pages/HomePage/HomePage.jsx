@@ -4,7 +4,7 @@ import Products from '../../components/Products/Products.jsx';
 import MsgBox from "../../components/MsgBox.jsx";
 import  Loading  from "../../components/Loading.jsx";
 import { homePageReducer, initState } from '../../Reducers/HomePageReducer.js';
-import { GET_REQUEST, GET_SUCCESS, GET_FAIL } from '../../Reducers/Actions';
+import { GET_REQUEST, GET_SUCCESS, GET_FAIL } from '../../Reducers/Actions.js';
 import "./HomePage.css";
 
 const HomePage = () => {

@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useReducer, useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { store } from '../../context/store';
 import { PlaceOrderPageReducer } from '../../Reducers/PlaceOrderPageReducer';
-import { GET_REQUEST, GET_SUCCESS, GET_FAIL, CLEAR_CART } from '../../Reducers/Actions'
+import { CREATE_REQUEST, CREATE_SUCCEEDED, CREATE_FAILED, CLEAR_CART } from '../../Reducers/Actions'
 import Title from '../../components/Title/Title';
 import CheckoutSteps from '../../components/CheckoutSteps/CheckoutSteps';
 import { Button, Card,ListGroup ,Row, Col } from 'react-bootstrap';
@@ -27,13 +27,13 @@ const { paymentMethod } = cart;
 const navigate = useNavigate()
 
 const submitOrderHandler = async (e) => {
-    
+    e.preventDefault();
     try {
-        e.preventDefault();
 
-        dispatch({type: GET_REQUEST});
+        dispatch({type: CREATE_REQUEST});
 
-        const data = await axios.post('/orders', {
+        const {data} = await axios.post('/orders', 
+        {
             orderItems: cart.cartItems,
             shippingAddress: cart.shippingAddress,
             paymentMethod: cart.paymentMethod,
@@ -47,12 +47,12 @@ const submitOrderHandler = async (e) => {
             }
         });
 
-        dispatch({type: GET_SUCCESS});    
+        dispatch({type: CREATE_SUCCEEDED});    
         ctxDispatch({type: CLEAR_CART });
-        navigate(`/order/${data.order._id}`);
+        navigate(`/ordersubmitted/${data.order._id}`);
 
     } catch (error) {
-        dispatch({type: GET_FAIL});
+        dispatch({type: CREATE_FAILED});
         toast.error(error.message,ToastErrorSettings);
     }
 };
@@ -163,7 +163,7 @@ return (
                     </ListGroup.Item>
                     <ListGroup.Item>
                     <div className="d-grid">
-                        <Button type="button" onClick={submitOrderHandler} disabled={cart.cartItems.length === 0}>Submit</Button>
+                        <Button type="button" onClick={submitOrderHandler} disabled={cart.cartItems.length === 0}>Submit Order</Button>
                     </div>
                     <div>
                         {loading && <Loading />}

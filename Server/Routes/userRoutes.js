@@ -18,8 +18,8 @@ userRouter.post('/signin', expressAsyncHandler(async (req, res) => {
 
 userRouter.post("/signup" , expressAsyncHandler(async (req, res) => {
     const newUser = new User({ name: req.body.name, email: req.body.email, password: bcrypt.hashSync(req.body.password) });
-    const newUserSaved = await newUser.save();
-    res.send({ _id: newUserSaved._id, name: newUserSaved.name, email: newUserSaved.email, token: generateToken(newUserSaved) })
+    const user = await newUser.save();
+    res.send({ _id: user._id, name: user.name, email: user.email, token: generateToken(user) })
 }))
 
 //test if the isAuth middleware is working

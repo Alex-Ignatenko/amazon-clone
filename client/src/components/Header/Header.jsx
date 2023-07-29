@@ -17,6 +17,7 @@ const Header = () => {
 
     const signOutHandler = () => {
         ctxDispatch({type:USER_SIGNOUT})
+        navigate("/");
      };
 
      const signInHandler = () => {

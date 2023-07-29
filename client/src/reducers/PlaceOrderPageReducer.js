@@ -1,4 +1,4 @@
-import { GET_REQUEST, GET_SUCCESS, GET_FAIL } from './Actions'
+import { CREATE_REQUEST, CREATE_SUCCEEDED, CREATE_FAILED } from './Actions'
 
 
 export const initState = {
@@ -7,11 +7,11 @@ export const initState = {
 
 export const PlaceOrderPageReducer = (state, { type }) => {
     switch (type) {
-        case GET_REQUEST:
+        case CREATE_REQUEST:
             return {...state, loading: true};
-        case GET_SUCCESS:
+        case CREATE_SUCCEEDED:
             return {...state, loading: false};
-        case GET_FAIL:
+        case CREATE_FAILED:
             return {...state, loading: false};
         default:
             return state
