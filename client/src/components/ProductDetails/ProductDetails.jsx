@@ -2,9 +2,9 @@
 import { Badge, Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import Title from "../Title/Title";
 import Rating from "../Rating/Rating";
-import  './ProductDescription.css';
+import  './ProductDetails.css';
 
-function ProductDescription({product, addToCart}) {
+function ProductDetails({product, addToCart}) {
     return (
         <>
 
@@ -77,4 +77,4 @@ function ProductDescription({product, addToCart}) {
     </>
     )
 }
-export default ProductDescription;
+export default ProductDetails;

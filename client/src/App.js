@@ -3,7 +3,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import NavBar from "./components/NavBar/NavBar.jsx";
+import Header from "./components/Header/Header.jsx";
 import HomePage from "./Pages/HomePage/HomePage";
 import SigninPage from "./Pages/SigninPage/SigninPage";
 import SignupPage from "./Pages/SignupPage/SignupPage";
@@ -12,11 +12,12 @@ import ShippingAddressPage from "./Pages/ShippingAddressPage/ShippingAddressPage
 import PaymentPage from "./Pages/PaymentPage/PaymentPage";
 import PlaceOrderPage from "./Pages/PlaceOrderPage/PlaceOrderPage";
 import ProductPage from "./Pages/ProductPage/ProductPage";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
     <BrowserRouter>
-    <NavBar />
+    <Header />
       <Container>
         <ToastContainer position="bottom-center" limit={1}/>
         <main>

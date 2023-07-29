@@ -9,7 +9,7 @@ import axios from 'axios';
 import Loading from '../../components/Loading';
 import MsgBox from '../../components/MsgBox';
 import { addToCartHandler } from '../../Services/AddToCart';
-import ProductDescription from '../../components/Product/ProductDescription';
+import ProductDetails from '../../components/ProductDetails/ProductDetails';
 import { ToastErrorSettings } from '../../Services/ToastErrorSettings';
 import './ProductPage.css'
 
@@ -53,7 +53,7 @@ const ProductPage = () => {
           ) : error ? (
             <MsgBox variant="danger">{error}</MsgBox>
           ) : (
-            <ProductDescription product={product} addToCart={addToCart} />
+            <ProductDetails product={product} addToCart={addToCart} />
           )}
         </>
       );

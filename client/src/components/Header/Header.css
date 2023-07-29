@@ -1,0 +1,24 @@
+.header{
+  background-color: #292a2c;
+}
+.header-text{
+  color: #ffffff;
+  font-weight: bold;
+}
+.header a {
+   color: #ffffff;
+   font-weight: bold; 
+}
+
+.header .container{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.search-box{
+    width: 20rem;
+    margin: 10px;
+}
+.dropdown-menu{
+  background-color: #292a2c;
+}

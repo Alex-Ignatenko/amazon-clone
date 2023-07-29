@@ -12,15 +12,6 @@ a {
   text-decoration: none;
 }
 
-header a {
-   color: #ffffff;
-   font-weight: bold; 
-}
-
-.header-text {
-  color: #ffffff;
-  font-weight: bold;
-}
 
 main {
   width: min(85rem, 100% - 4rem);
