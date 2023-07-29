@@ -26,7 +26,7 @@ const HomePage = () => {
 
     return (
       <>
-        <h1 className="my-3">Products</h1>
+        <h1 className="my-4">Products</h1>
         <div className="products">
           {loading ? (
             <Loading></Loading>

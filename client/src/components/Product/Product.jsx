@@ -18,11 +18,11 @@ const Product = ({product}) => {
         <Card.Img variant="top" src={product.image } alt={product.title}
                 onError={({ currentTarget }) => {
                   currentTarget.onerror = null; // prevents looping
-                  currentTarget.src="image_path_here";
+                  currentTarget.src="/imgs/Image_not_available.png";
                 }} 
-                className='card-image-page mt-0.5' /> 
+                className='card-image-home mt-0.5' /> 
       </Link>
-        <Card.Body className='card-body'>
+        <Card.Body className='card-body-home'>
           <Link to={`/product/${product.token}`}> 
             <Card.Title className='text-shortner'>{product.title}</Card.Title>
           </Link>

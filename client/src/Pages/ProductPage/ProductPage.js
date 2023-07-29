@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { store } from '../../context/store';
 import { ProductPageReducer, initState } from '../../Reducers/ProductPageReducer.js';
 import { GET_REQUEST, GET_SUCCESS, GET_FAIL} from '../../Reducers/Actions'
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Card, ListGroup } from 'react-bootstrap';
 import  {toast}  from 'react-toastify';
 import axios from 'axios';
 import Loading from '../../components/Loading';
@@ -11,6 +11,7 @@ import MsgBox from '../../components/MsgBox';
 import { addToCartHandler } from '../../Services/AddToCart';
 import ProductDescription from '../../components/Product/ProductDescription';
 import { ToastErrorSettings } from '../../Services/ToastErrorSettings';
+import './ProductPage.css'
 
 const ProductPage = () => {   
 
@@ -45,24 +46,16 @@ const ProductPage = () => {
     },[token]);
 
     return (
-        <div>
+        <>
+          <h1 className="my-4">About this product...</h1>
           {loading ? (
             <Loading />
           ) : error ? (
             <MsgBox variant="danger">{error}</MsgBox>
           ) : (
-            <div>
-              <Row>
-                <Col md={5}>
-                  <img src={`${product.image}`} alt={product.title} className="card-img-top card-image"/>
-                </Col>
-                <Col md={7}>
-                  <ProductDescription product={product} addToCart={addToCart} />
-                </Col>
-              </Row>
-            </div>
+            <ProductDescription product={product} addToCart={addToCart} />
           )}
-        </div>
+        </>
       );
 }
 

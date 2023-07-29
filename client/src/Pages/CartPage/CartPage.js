@@ -41,8 +41,9 @@ const CartPage = () => {
     };
 
     return (
-    <div>
+    <>
         <Title title="Shopping Cart"></Title>
+        <h1 className="my-4">Your Cart</h1>
         <Row>
             <Col mb={8}>
                 <Cart cartItems={cartItems} updateCartHandler={updateCartHandler} removeItemHandler={removeItemHandler} />
@@ -52,7 +53,7 @@ const CartPage = () => {
             </Col>
         </Row>
 
-    </div>
+    </>
   )
 }
 

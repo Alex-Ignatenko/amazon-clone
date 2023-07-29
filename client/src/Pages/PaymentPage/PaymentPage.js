@@ -31,7 +31,7 @@ const PaymentPage = () => {
             <Title>Payment</Title>
             <CheckoutSteps step1 step2 step3/>
             <div className='container small-container'>
-            <h1 className="my-3">Payment Method</h1>
+            <h1 className="my-4">Payment Method</h1>
             <Form onSubmit={submitHandler}>
                 <div className='mb-3'>
                     <Form.Check type='radio' id="PayPal" label="PayPal" value = 'PayPal' checked={paymentMethodName === 'PayPal'} onChange={e => setPaymentMethodName(e.target.value)}/>

@@ -36,7 +36,7 @@ const ShippingAddressPage = () => {
         <Title>Shipping Address</Title>
         <CheckoutSteps step1 step2></CheckoutSteps>
         <div className='container small-container'>
-            <h1 className="my-3">Shipping Address</h1>
+            <h1 className="my-4">Shipping Address</h1>
             <Form onSubmit={submitHandler}>
                 {/* Full Name Field */}
                 <Form.Group controlId="fullName" className='mb-3'>
