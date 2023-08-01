@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 import { store } from "../../context/store";
 import { USER_SIGNOUT } from "../../Reducers/Actions";
+import SearchBox from "../SearchBox/SearchBox";
 
 
 
@@ -39,7 +40,8 @@ const Header = () => {
                         </Navbar.Brand>
                     </LinkContainer>
                         <nav className="d-flex mx-auto align-items-center header-text">
-                            Search{" "}<input type="text" className="search-box"></input>
+                            <SearchBox></SearchBox>
+                            {/* <input type="text" className="search-box"></input> */}
                         </nav>
                         {userInfo? (
                                 <NavDropdown className="me-4 header-text" title={"Welcome "+userInfo.name}>

@@ -26,6 +26,7 @@ const OrderSubmittedPage = () => {
         if (!userInfo) {
             naviagte('/signin');
         }
+        
         const getOrder = async () => {
             dispatch({ type: GET_REQUEST });
             try {
