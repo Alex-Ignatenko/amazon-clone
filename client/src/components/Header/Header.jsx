@@ -56,7 +56,7 @@ const Header = () => {
                         )}
                 </Container>
                 <Link to="/cart" className="me-5">
-                        <i className="fas fa-shopping-cart fa-lg text-white"></i>
+                        <i className="fas fa-shopping-cart fa-2x text-white"></i>
                             {cartItems.length > 0 && (
                                 <Badge pill bg="" style={{backgroundColor: '#f0c040'}} className="cart-badge">
                                     {" "}

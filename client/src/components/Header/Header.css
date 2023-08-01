@@ -22,8 +22,8 @@
 .dropdown-menu{
   background-color: #292a2c;
 }
-/* .cart-badge{
-  font-size: 18px;
+.cart-badge{
+  font-size: 1.25rem;
   -webkit-text-fill-color: white;
-  -webkit-text-stroke: black 0.95px;
-} */
+  -webkit-text-stroke: black 0.87px;
+}
