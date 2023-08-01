@@ -5,7 +5,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { GET_FAIL, GET_REQUEST, GET_SUCCESS } from '../../Reducers/Actions';
 import { GetURLSearchFilter } from '../../Services/GetURLSearchFilter';
-import { Button, Col, Row} from 'react-bootstrap';
+import { Button, Card, Col, Container, Row} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import Title from '../../components/Title/Title';
 import "./SearchPage.css"
@@ -66,47 +66,60 @@ const SearchPage = () => {
     <h1 className="my-4">Search Results</h1>
     <Row>
         <Col md={3}>
-            <div>
-                <h3>Categories</h3>
-                <ul>
-                    <li>
-                        <Link className={"all" === category ? 'text-bold' : ''} to={GetURLSearchFilter(search,{category: "all"})}>Any</Link>
-                    </li>
-                    {categories.map(c => (
-                        <li key={c}>
-                            <Link className={c === category ? 'text-bold' : ''} to={GetURLSearchFilter(search,{category: c})}>{c}</Link>
-                        </li> 
-                    ))}
-                </ul>
-            </div>
-            <div>
-                <h3>Price Range</h3>
-                <ul>
-                    {prices.map(p => (
-                        <li key={p.name}>
-                            <Link className={p.value === price ? 'text-bold' : ''} to={GetURLSearchFilter(search,{price: p.value})}>{p.name}</Link>
-                        </li> 
-                    ))}
-                </ul>
-            </div>
-            <div>
-                <h3>Rating</h3>
-                <ul>
-                    {ratings.map(r => (
-                        <li key={r.name}>
-                            <Link to={GetURLSearchFilter(search,{rating: r.value})}><Rating rating={r.value} caption=" "></Rating></Link>
-                        </li> 
-                    ))}
-                </ul>
-            </div>
+        <div className='align-height-div'></div>
+        <Container className='px-3 py-3'>
+                    <Card>
+                        <Card.Body>
+                            <h3 className='px-2 py-2'>Categories</h3>    
+                            <ul class="px-2 list-unstyled">
+                                <li>
+                                    <Link className={"all" === category ? 'text-bold' : ''} to={GetURLSearchFilter(search,{category: "all"})}>Any</Link>
+                                </li>
+                                {categories.map(c => (
+                                    <li key={c}>
+                                        <Link className={c === category ? 'text-bold' : ''} to={GetURLSearchFilter(search,{category: c})}>{c}</Link>
+                                    </li> 
+                                ))}
+                            </ul>
+                        </Card.Body>
+                    </Card>
+                </Container>
+                <Container className='px-3 py-3'>
+                    <Card>
+                        <Card.Body>
+                            <h3 className='px-2 py-2'>Price Range</h3>
+                            <ul class="px-2 list-unstyled">
+                                {prices.map(p => (
+                                    <li key={p.name}>
+                                        <Link className={p.value === price ? 'text-bold' : ''} to={GetURLSearchFilter(search,{price: p.value})}>{p.name}</Link>
+                                    </li> 
+                                ))}
+                            </ul>
+                        </Card.Body>                
+                    </Card>
+                </Container>
+                <Container className='px-3 py-3'>
+                    <Card>
+                        <Card.Body>
+                            <h3 className='px-2 py-2'>Rating</h3>
+                            <ul class="px-2 list-unstyled">
+                                {ratings.map(r => (
+                                    <li key={r.name}>
+                                        <Link to={GetURLSearchFilter(search,{rating: r.value})}><Rating rating={r.value} caption=" "></Rating></Link>
+                                    </li> 
+                                ))}
+                            </ul>
+                        </Card.Body>                 
+                    </Card>
+                </Container>
         </Col>
         <Col md={9}>
             {loading ? (<Loading/>) : error ? (<MsgBox variant="danger">{error.message}</MsgBox>) : (
                 <>
                     <Row className='justify-content-between md-3'>
                         <Col md={6}>
-                            <div>
-                                {countProducts === 0 ? 'No' : countProducts} Results:
+                            <div className='py-3'>
+                                {countProducts === 0 ? 'No' : countProducts} Results for:
                                 {query !== 'all' && " " + query}
                                 {category !== 'all' && ", " + category}
                                 {price !== 'all' && ", " + price}
@@ -116,7 +129,7 @@ const SearchPage = () => {
                                 ) : null}
                             </div>
                         </Col>
-                        <Col className='text-end'>
+                        <Col className='text-end py-3'>
                             Search By:{" "}
                             <select value={order} onChange={(e) => navigate(GetURLSearchFilter(search, {order: e.target.value}))}>
                                 <option value ="newest">Latest Arrivals</option>
@@ -134,10 +147,10 @@ const SearchPage = () => {
                             </Col>
                         ))}
                     </Row>
-                    <div className='py-3'>
+                    <div className='py-5 page-btn-container'>
                         {[...Array(pages).keys()].map((p) =>(
                             <LinkContainer className='mx-1' to={{pathname: '/search' , search: GetURLSearchFilter(search, {page: p+1},true)}}>
-                                <Button className={Number(page) === p+1 ? 'current-page' : ''}>{p+1}</Button>
+                                <Button  className= {` ${ Number(page) === p+1 ? 'current-page' : ''} page-btn`}>{p+1}</Button>
                             </LinkContainer>
                         ))}
                     </div>

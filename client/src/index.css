@@ -12,6 +12,9 @@ a {
   text-decoration: none;
 }
 
+.form-input-bg{
+  background-color: ghostwhite;
+}
 
 main {
   width: min(85rem, 100% - 4rem);
@@ -31,9 +34,9 @@ code {
 .btn-primary,
 .btn-outline-primary {
   background-color: #f0c040; 
-  /* ddad2b */
   color: #000000;
   border-width: 0px;
+  font-weight: bold;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -42,6 +45,8 @@ code {
   background-color: #d3a62c;
 }
 
-.current-page {
-  background-color: #ffc000 !important;
+.out-of-stock-bg{
+  background-color: #353538 !important;
+  opacity: 1 !important;
+  font-weight: bold;
 }

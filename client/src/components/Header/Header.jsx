@@ -32,17 +32,16 @@ const Header = () => {
     return (
         <>
             <Navbar className="header">
-                    <Link className="ms-5" onClick={() => {navigate(-1);}}>Back</Link>
-                <Container>
-                    <LinkContainer to="/">
+                <LinkContainer className="ms-5" to="/">
                         <Navbar.Brand>
-                            <img src="/imgs/amazonlogo.png" width={100} alt="AMZN" />
+                            <img src="/imgs/amazonlogo.png" width={125} alt="AMZN" />
                         </Navbar.Brand>
-                    </LinkContainer>
-                        <nav className="d-flex mx-auto align-items-center header-text">
+                </LinkContainer>  
+                <Container>
+                        <nav className="d-flex mx-auto align-items-center">
                             <SearchBox></SearchBox>
-                            {/* <input type="text" className="search-box"></input> */}
                         </nav>
+                        <i className="fas fa-solid fa-user fa-2x text-white px-2"></i>
                         {userInfo? (
                                 <NavDropdown className="me-4 header-text" title={"Welcome "+userInfo.name}>
                                     <NavDropdown.Item to="#signout" onClick={signOutHandler} className="dropdown-item">Sign out</NavDropdown.Item>     
@@ -64,7 +63,7 @@ const Header = () => {
                                 </Badge>
                             )}
                         <span>{" "}Cart</span>
-                    </Link>
+                </Link>
              </Navbar>
         </>
     );

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Button, Container, Form } from 'react-bootstrap'
+import { Button, Card, Container, Form } from 'react-bootstrap'
 import Title from '../../components/Title/Title';
 import { Link, useLocation, useNavigate } from'react-router-dom';
 import { store } from '../../context/store';
@@ -42,26 +42,30 @@ const SigninPage = () => {
 
   return (
     <>
+    <Title title="Sign In" ></Title>
+    <h1 className="my-4">Sign In</h1>
+    <Card>
+      <Card.Body>
         <Container className='small-container'>
-            <Title title="Sign In" ></Title>
-            <h1 className="my-4">Sign In</h1>
             <Form onSubmit={submitHandler}>
                 <Form.Group className='mb-3' controlId='email'>
                     <Form.Label>Email</Form.Label>
-                    <Form.Control type='email' required placeholder='Enter your email' onChange={(e) => setEmail(e.target.value)}/>
+                    <Form.Control className='form-input-bg' type='email' required placeholder='Enter your email' onChange={(e) => setEmail(e.target.value)}/>
                 </Form.Group>
                 <Form.Group className='mb-3' controlId='password'>
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type='password' required placeholder='Enter your password' onChange={(e) => setPassword(e.target.value)}/>
+                    <Form.Control className='form-input-bg' type='password' required placeholder='Enter your password' onChange={(e) => setPassword(e.target.value)}/>
                 </Form.Group>
-                <div className='mb-3'>
+                <div className='py-4 d-grid'>
                     <Button type="submit" variant="primary">Sign In</Button>
                 </div>
-                <div className='mb-3'>
+                <div className='py-2'>
                     New Customer? <Link to={`/signup?redirect=${redirect}`}> Create an Account</Link>
                 </div>
             </Form>
         </Container>
+      </Card.Body>
+    </Card>
     </>
   )
 }

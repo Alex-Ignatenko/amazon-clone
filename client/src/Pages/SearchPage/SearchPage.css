@@ -1,3 +1,39 @@
 .text-bold{
     font-weight: bolder;
 }
+
+.search-param-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.search-param-subcontainer{
+    max-height: 100%;
+}
+
+.page-btn-container{
+    display: flex;
+    justify-content: center;
+}
+.page-btn {
+    border: 1px solid rgb(185, 185, 185) !important;
+    background-color: white !important;
+    color: #292a2c !important;
+    transition: box-shadow 0.2s ease-in-out, scale 0.2s ease-in-out;
+    box-shadow: none;
+    scale: 1;
+}
+.page-btn:hover {
+    box-shadow: 3px 3px 3px #888;
+    scale: 1.02;
+}
+.current-page {
+    background-color: #ffc000 !important;
+    box-shadow: 3px 3px 3px #888;
+    scale: 1.1;
+}
+
+
+.align-height-div{
+    margin-top: 70px;
+}

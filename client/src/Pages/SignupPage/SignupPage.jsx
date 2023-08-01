@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Button, Container, Form} from 'react-bootstrap'
+import { Button, Card, Container, Form} from 'react-bootstrap'
 import Title from '../../components/Title/Title';
 import { Link, useLocation, useNavigate } from'react-router-dom';
 import { store } from '../../context/store';
@@ -50,30 +50,34 @@ const SignupPage = () => {
         <Container className='small-container'>
             <Title title="Sign In" ></Title>
             <h1 className="my-4">Sign Up</h1>
-            <Form onSubmit={submitHandler}>
-            <Form.Group className='mb-3' controlId='name'>
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control type='text' required placeholder='Enter your name' onChange={(e) => setName(e.target.value)}/>
-                </Form.Group>
-                <Form.Group className='mb-3' controlId='email'>
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type='email' required placeholder='Enter your email' onChange={(e) => setEmail(e.target.value)}/>
-                </Form.Group>
-                <Form.Group className='mb-3' controlId='password'>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type='password' required placeholder='Enter your password' onChange={(e) => setPassword(e.target.value)}/>
-                </Form.Group>
-                <Form.Group className='mb-3' controlId='confirm-password'>
-                    <Form.Label>Confirm Password</Form.Label>
-                    <Form.Control type='password' required placeholder='Confirm password' onChange={(e) => setConfirmPassword(e.target.value)}/>
-                </Form.Group>
-                <div className='mb-3'>
-                    <Button type="submit" variant="primary">Sign Up</Button>
-                </div>
-                <div className='mb-3'>
-                    Already have an account? <Link to={`/signin?redirect=${redirect}`}>Sign in</Link>
-                </div>
-            </Form>
+            <Card>
+              <Card.Body>
+                <Form onSubmit={submitHandler}>
+                  <Form.Group className='mb-3' controlId='name'>
+                          <Form.Label>Name</Form.Label>
+                          <Form.Control className='form-input-bg' type='text' required placeholder='Enter your name' onChange={(e) => setName(e.target.value)}/>
+                      </Form.Group>
+                      <Form.Group className='mb-3' controlId='email'>
+                          <Form.Label>Email</Form.Label>
+                          <Form.Control className='form-input-bg' type='email' required placeholder='Enter your email' onChange={(e) => setEmail(e.target.value)}/>
+                      </Form.Group>
+                      <Form.Group className='mb-3' controlId='password'>
+                          <Form.Label>Password</Form.Label>
+                          <Form.Control className='form-input-bg' type='password' required placeholder='Enter your password' onChange={(e) => setPassword(e.target.value)}/>
+                      </Form.Group>
+                      <Form.Group className='mb-3' controlId='confirm-password'>
+                          <Form.Label>Confirm Password</Form.Label>
+                          <Form.Control className='form-input-bg' type='password' required placeholder='Confirm password' onChange={(e) => setConfirmPassword(e.target.value)}/>
+                      </Form.Group>
+                      <div className='py-4 d-grid'>
+                          <Button type="submit" variant="primary">Sign Up</Button>
+                      </div>
+                      <div className='py-2'>
+                          Already have an account? <Link to={`/signin?redirect=${redirect}`}>Sign in</Link>
+                      </div>
+                </Form>
+              </Card.Body>
+            </Card>
         </Container>
     </>
   )
