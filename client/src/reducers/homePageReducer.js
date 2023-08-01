@@ -14,5 +14,7 @@ export const homePageReducer = (state, { type, payload }) => {
             return {...state, loading: false, products: payload};
         case GET_FAIL:
             return {...state, loading: false, error: payload};
+        default:
+            return state;
     }
 };

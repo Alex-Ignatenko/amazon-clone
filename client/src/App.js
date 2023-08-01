@@ -14,6 +14,7 @@ import PlaceOrderPage from "./Pages/PlaceOrderPage/PlaceOrderPage";
 import ProductPage from "./Pages/ProductPage/ProductPage";
 import OrderSubmittedPage from "./Pages/OrderSubmittedPage/OrderSubmittedPage";
 import Footer from "./components/Footer/Footer";
+import SearchPage from "./Pages/SearchPage/SearchPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/search" element={<SearchPage />} />
           <Route path="/signin" element={<SigninPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/product/:token" element={<ProductPage />} />

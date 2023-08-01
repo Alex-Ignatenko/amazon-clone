@@ -56,10 +56,10 @@ productRouter.get("/search",expressAsyncHandler(async (req, res) => {
     const searchQuery = query.query || "";
 
     //Build search filters
-    const queryFilter = searchQuery && searchQuery !== "all" ? { title: { $regex: searchQuery, $options: 'i' } } : {};
-    const categoryFilter = category && category !== "all" ? { category: { $regex: category, $options: 'i' } } : {};
-    const ratingFilter = rating && rating !== "all" ? {} : { "rating.rate": { $gte: Number(rating) } };
-    const priceFilter = price && price !== "all" ? {} : { price: { $gte: Number(price.split("-")[0]), $lte: Number(price.split("-")[1]) } };
+    const queryFilter = searchQuery && searchQuery === "all" ? {} : { title: { $regex: searchQuery, $options: 'i' } };
+    const categoryFilter = category && category === "all" ? {} : { category: category};
+    const ratingFilter = rating && rating === "all" ? {} : { "rating.rate": { $gte: Number(rating) } };
+    const priceFilter = price && price === "all" ? {} : { price: { $gte: Number(price.split("-")[0]), $lte: Number(price.split("-")[1]) } };
     
     //Define sorting options
     const sortOrder =

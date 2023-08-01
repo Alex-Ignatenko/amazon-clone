@@ -6,22 +6,21 @@ import {Button, Form, FormControl, InputGroup} from 'react-bootstrap';
 const SearchBox = () => {
 
  const [query, setQuery] = useState("");
- const {search} = useLocation();
+ const {search, pathname} = useLocation();
  const navigate = useNavigate();
 
 const submitHandler = (e) => {
     e.preventDefault();
-    const link = GetURLSearchFilter(search, {query: query});  
+    const link = GetURLSearchFilter(search, {query: query || 'all'});  
     navigate(link);
 };
 
 //Enables search as you type via use effect that fires every query change
  useEffect(() =>{
-    if(!query) {
+    if(pathname != '/search' && !query){
         return;
-    } 
-
-    const link = GetURLSearchFilter(search, {query: query});  
+    };
+    const link = GetURLSearchFilter(search, {query: query || 'all'});  
     navigate(link);
 
  },[query]);

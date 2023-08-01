@@ -62,7 +62,7 @@ function ProductDetails({product, addToCart}) {
                             ) : (
                                 <ListGroup.Item>
                                     <div className='d-grid mb-3 mt-3 px-4'>
-                                        <Button disabled variant='danger'>Out of Stock</Button>
+                                        <Button disabled variant='dark'>Out of Stock</Button>
                                     </div>
                                 </ListGroup.Item>)
                             }

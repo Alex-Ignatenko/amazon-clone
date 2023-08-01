@@ -18,7 +18,7 @@ export const GetURLSearchFilter = (searchFromURL,filter, skipPathName) => {
     const filterRating = filter.rating || rating;
     const filterOrder = filter.order || order;
 
-    const link = `${skipPathName ? '' : "/search?"}category=${filterCategory}&page=${filterPage}&query=${filterQuery}&rating=${filterRating}&price=${filterPrice}&order=${filterOrder}`;
+    let link = `${skipPathName ? '' : "/search?"}category=${filterCategory}&page=${filterPage}&query=${filterQuery}&rating=${filterRating}&price=${filterPrice}&order=${filterOrder}`;
 
     return link;
 };
