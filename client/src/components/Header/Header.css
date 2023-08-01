@@ -25,5 +25,5 @@
 .cart-badge{
   font-size: 1.25rem;
   -webkit-text-fill-color: white;
-  -webkit-text-stroke: black 0.87px;
+  -webkit-text-stroke: rgb(47, 47, 46) 0.87px;
 }
