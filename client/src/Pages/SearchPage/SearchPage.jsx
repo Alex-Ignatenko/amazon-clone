@@ -5,7 +5,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { GET_FAIL, GET_REQUEST, GET_SUCCESS } from '../../Reducers/Actions';
 import { GetURLSearchFilter } from '../../Services/GetURLSearchFilter';
-import { Button, Col, Row } from 'react-bootstrap';
+import { Button, Col, Row} from 'react-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap';
 import Title from '../../components/Title/Title';
 import "./SearchPage.css"
 import Rating from '../../components/Rating/Rating';
@@ -133,6 +134,13 @@ const SearchPage = () => {
                             </Col>
                         ))}
                     </Row>
+                    <div className='py-3'>
+                        {[...Array(pages).keys()].map((p) =>(
+                            <LinkContainer className='mx-1' to={{pathname: '/search' , search: GetURLSearchFilter(search, {page: p+1},true)}}>
+                                <Button className={Number(page) === p+1 ? 'current-page' : ''}>{p+1}</Button>
+                            </LinkContainer>
+                        ))}
+                    </div>
                 </>
             )}
         </Col>

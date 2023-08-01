@@ -30,7 +30,8 @@ code {
 
 .btn-primary,
 .btn-outline-primary {
-  background-color: #f0c040;
+  background-color: #f0c040; 
+  /* ddad2b */
   color: #000000;
   border-width: 0px;
 }
@@ -39,4 +40,8 @@ code {
 .btn-outline-primary:hover,
 .btn-outline-primary:focus {
   background-color: #d3a62c;
+}
+
+.current-page {
+  background-color: #ffc000 !important;
 }

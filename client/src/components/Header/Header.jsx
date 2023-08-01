@@ -58,7 +58,7 @@ const Header = () => {
                 <Link to="/cart" className="me-5">
                         <i className="fas fa-shopping-cart fa-lg text-white"></i>
                             {cartItems.length > 0 && (
-                                <Badge pill bg="" style={{backgroundColor: '#ddad2b'}}>
+                                <Badge pill bg="" style={{backgroundColor: '#f0c040'}} className="cart-badge">
                                     {" "}
                                     {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
                                 </Badge>

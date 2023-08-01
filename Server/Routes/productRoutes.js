@@ -75,7 +75,12 @@ productRouter.get("/search",expressAsyncHandler(async (req, res) => {
 
     //Get products that fit the selected filtering and sorting options   
     const products = await Product.find({...queryFilter,...categoryFilter,...ratingFilter,...priceFilter }).sort(sortOrder).skip((page - 1) * pageSize).limit(pageSize);
-    const countProducts = products.length;
+    const countProducts = await Product.countDocuments({
+        ...queryFilter,
+        ...categoryFilter,
+        ...ratingFilter,
+        ...priceFilter,
+      });
     res.send({products,page,countProducts,pages: Math.ceil(countProducts / pageSize)});
 
 }));
