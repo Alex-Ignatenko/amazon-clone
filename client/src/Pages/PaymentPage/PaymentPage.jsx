@@ -5,6 +5,7 @@ import { SAVE_PAYMENT_METHOD } from '../../Reducers/Actions'
 import Title from '../../components/Title/Title';
 import CheckoutSteps from '../../components/CheckoutSteps/CheckoutSteps';
 import { Button, Card, Form } from 'react-bootstrap';
+import './PaymentPage.css'
 
 const PaymentPage = () => {
 
@@ -35,14 +36,14 @@ const PaymentPage = () => {
             <Card>
                 <Card.Body>
                     <Form className='px-3 pt-3' onSubmit={submitHandler}>
-                    <div className='mb-3'>
-                        <Form.Check type='radio' id="PayPal" label="PayPal" value = 'PayPal' checked={paymentMethodName === 'PayPal'} onChange={e => setPaymentMethodName(e.target.value)}/>
+                    <div className={paymentMethodName === 'PayPal' ? 'active-checkbox' : 'inactive-checkbox'}>
+                        <Form.Check type='radio' id="PayPal" label="PayPal" value = 'PayPal' checked={paymentMethodName === 'PayPal'}  onChange={e => setPaymentMethodName(e.target.value)}/>
                     </div>
-                    <div className='mb-3'>
+                    <div className={paymentMethodName === 'Stripe' ? 'active-checkbox' : 'inactive-checkbox'}>
                         <Form.Check type='radio' id="Stripe" label="Stripe" value = 'Stripe' checked={paymentMethodName === 'Stripe'} onChange={e => setPaymentMethodName(e.target.value)}/>
                     </div>
-                    <div className='mb-3'>
-                        <Form.Check type='radio' id="Visa" label="Visa" value = 'Visa' checked={paymentMethodName === 'Visa'} onChange={e => setPaymentMethodName(e.target.value)}/>
+                    <div className={paymentMethodName === 'Visa' ? 'active-checkbox' : 'inactive-checkbox'}>
+                        <Form.Check  type='radio' id="Visa" label="Visa" value = 'Visa' checked={paymentMethodName === 'Visa'} onChange={e => setPaymentMethodName(e.target.value)}/>
                     </div>
                     <div className='py-4 d-grid'>
                         <Button variant="primary" type="submit" >Continue</Button>

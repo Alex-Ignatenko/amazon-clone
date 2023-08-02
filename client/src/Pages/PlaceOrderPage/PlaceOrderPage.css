@@ -1,5 +1,5 @@
 .summary-card {
- height: 20rem;
+ height: 18rem;
 }
 .items-card{
     height: fit-content;
@@ -15,4 +15,12 @@
     -webkit-line-clamp: 1;
     line-clamp: 1;
     -webkit-box-orient: vertical;
+}
+.edit-link-container{
+    display: flex;
+    justify-content: center;
+}
+.summery-line{
+    display: flex;
+    justify-content: space-between;
 }

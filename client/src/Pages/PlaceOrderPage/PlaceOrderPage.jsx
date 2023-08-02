@@ -79,10 +79,10 @@ return (
         <h1 className="my-4">Order Summary</h1>
         <Row>
             <Col md={8}>
-            <Card className="mb-3">
+            <Card className="mb-4">
                 <Card.Body>
-                <Card.Title>Shipping</Card.Title>
-                <Card.Text>
+                <Card.Title><strong>Shipping</strong></Card.Title>
+                <Card.Text className='m-1 p-1'>
                     <strong>Name: </strong>
                     {cart.shippingAddress.fullName}
                     <br />
@@ -95,22 +95,29 @@ return (
                     <strong>Country: </strong>
                     {cart.shippingAddress.country}
                 </Card.Text>
+                <hr />
+                <div className='px-3 d-grid'>
+                <Button type="button" onClick={() =>navigate('/shipping')}>Edit</Button>
+                </div>
                 </Card.Body>
             </Card>
-            <Card className="mb-3">
+            <Card className="mb-4">
                 <Card.Body>
-                <Card.Title>Payment</Card.Title>
-                <Card.Text>
+                <Card.Title><strong>Payment</strong></Card.Title>
+                <Card.Text className='m-1 p-1'>
                     <strong>Method: </strong>
                     {cart.paymentMethod}
                 </Card.Text>
-                <Link to="/payment">Edit</Link>
+                <hr />
+                <div className=' px-3 d-grid'>
+                    <Button type="button" onClick={() =>navigate('/payment')}>Edit</Button>
+                </div>
                 </Card.Body>
             </Card>
-            <Card className="mb-3">
+            <Card className="mb-4">
                 <Card.Body className='items-card'>
-                <Card.Title>Items</Card.Title>
-                <ListGroup variant="flush">
+                <Card.Title><strong>Items</strong></Card.Title>
+                <ListGroup variant="flush" className='m-1 p-1'>
                     {cart.cartItems.map((item) => (
                     <ListGroup.Item key={item._id}>
                         <Row className="align-items-center">
@@ -126,7 +133,10 @@ return (
                     </ListGroup.Item>
                     ))}
                 </ListGroup>
-                <Link to="/cart">Edit</Link>
+                <hr />
+                <div className='px-3 d-grid'>
+                    <Button type="button" onClick={() =>navigate('/cart')}>Edit</Button>
+                </div>
                 </Card.Body>
             </Card>
             </Col>
@@ -136,33 +146,31 @@ return (
                 <Card.Title>Summary: </Card.Title>
                 <ListGroup variant="flush">
                     <ListGroup.Item>
-                    <Row>
-                        <Col>Items: </Col>
-                        <Col>${cart.itemsPrice}</Col>
-                    </Row>
+                        <div className='summery-line'>
+                            <div>Items: </div>
+                            <div>${cart.itemsPrice}</div>
+                        </div>
                     </ListGroup.Item>
                     <ListGroup.Item>
-                    <Row>
-                        <Col>Shipping: </Col>
-                        <Col>${cart.shippingPrice}</Col>
-                    </Row>
+                        <div className='summery-line'>
+                            <div>Shipping: </div>
+                            <div>${cart.shippingPrice}</div>
+                        </div>
                     </ListGroup.Item>
                     <ListGroup.Item>
-                    <Row>
-                        <Col>Tax: </Col>
-                        <Col>${cart.taxPrice}</Col>
-                    </Row>
+                    <div className='summery-line'>
+                        <div>Tax: </div>
+                        <div>${cart.taxPrice}</div>
+                    </div>
                     </ListGroup.Item>
                     <ListGroup.Item>
-                    <Row>
-                        <Col>Total: </Col>
-                        <Col>
-                        <strong>${cart.totalPrice}</strong>
-                        </Col>
-                    </Row>
+                        <div className='summery-line'>
+                            <div><strong>Total:</strong></div>
+                            <div><strong>${cart.totalPrice}</strong></div>
+                        </div>
                     </ListGroup.Item>
                     <ListGroup.Item>
-                    <div className="d-grid">
+                    <div className="d-grid pt-2">
                         <Button type="button" onClick={submitOrderHandler} disabled={cart.cartItems.length === 0}>Submit Order</Button>
                     </div>
                     <div>
