@@ -55,14 +55,14 @@ function ProductDetails({product, addToCart}) {
                         </ListGroup.Item>
                             {product.countInStock > 0 ? (
                                 <ListGroup.Item>
-                                    <div className='d-grid mb-3 mt-3 px-4'>
-                                        <Button onClick={() => addToCart()} variant='primary'>Add to cart</Button>
+                                    <div className='d-grid my-4 px-4'>
+                                        <Button onClick={() => addToCart()} variant='primary' className="mt-4 py-2">Add to cart</Button>
                                     </div>
                                 </ListGroup.Item>
                             ) : (
                                 <ListGroup.Item>
-                                    <div className='d-grid mb-3 mt-3 px-4'>
-                                        <Button disabled className="out-of-stock-bg">Out of Stock</Button>
+                                    <div className='d-grid my-4 px-4'>
+                                        <Button disabled className="out-of-stock-bg mt-4 py-2">Out of Stock</Button>
                                     </div>
                                 </ListGroup.Item>)
                             }

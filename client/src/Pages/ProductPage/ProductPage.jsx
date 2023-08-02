@@ -11,7 +11,6 @@ import MsgBox from '../../components/MsgBox';
 import { addToCartHandler } from '../../Services/AddToCart';
 import ProductDetails from '../../components/ProductDetails/ProductDetails';
 import { ToastErrorSettings } from '../../Services/ToastErrorSettings';
-import './ProductPage.css'
 
 const ProductPage = () => {   
 
