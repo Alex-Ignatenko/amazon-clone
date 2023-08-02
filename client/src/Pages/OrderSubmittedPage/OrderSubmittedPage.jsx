@@ -102,14 +102,10 @@ const OrderSubmittedPage = () => {
                           <ListGroup.Item key={item._id}>
                             <Row className="align-items-center">
                               <Col md={6}>
-                                <img
-                                  src={item.image}
-                                  alt={item.title}
-                                  className="img-fluid rounded img-thumbnail mt-2"
-                                  width={250}
-                                ></img>{' '}
-                                <br />
+                              <div className='tumb-img-container'>
+                                <img src={item.image} alt={item.title} className="img-fluid rounded tumb-img px-2 py-2"></img>{' '}
                                 <Link to={`/product/${item.token}`}>{item.title}</Link>
+                              </div>
                               </Col>
                               <Col md={3}>
                                 <span>{item.quantity}</span>

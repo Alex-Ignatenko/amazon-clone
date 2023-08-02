@@ -20,7 +20,7 @@ function App() {
   return (
     <BrowserRouter>
     <Header />
-      <Container>
+      <Container className="main-app-container">
         <ToastContainer position="bottom-center" limit={1}/>
         <main>
         <Routes>
@@ -37,6 +37,7 @@ function App() {
         </Routes>
         </main>
       </Container>
+      <Footer/>
   </BrowserRouter>
   );
 }

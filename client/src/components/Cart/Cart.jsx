@@ -15,8 +15,10 @@ const Cart = ({cartItems, updateCartHandler, removeItemHandler}) => {
                     <ListGroup.Item key={i}>
                         <Row className="align-items-center">
                             <Col md={4}>
-                                <img src={item.image} alt={item.name}  className='img-fluid rounded img-thumbnail'/>
-                                <Link className="text-shortner" to={`/product/${item.token}`}>{item.title}</Link>
+                                <div className='tumb-img-container'>
+                                    <img src={item.image} alt={item.name}  className='img-fluid rounded tumb-img px-4 py-2'/>
+                                    <Link className="text-shortner px-2" to={`/product/${item.token}`}>{item.title}</Link>
+                                </div>
                             </Col>
                             <Col md={3}>
                                 <Button onClick={() => {updateCartHandler(item,item.quantity -1)}} variant='light' disabled={item.quantity === 1}> 

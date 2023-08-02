@@ -4,9 +4,6 @@
 .items-card{
     height: fit-content;
 }
-.items-card img{
-    height: 15rem;
-}
 
 .text-shortner{
     overflow: hidden;
