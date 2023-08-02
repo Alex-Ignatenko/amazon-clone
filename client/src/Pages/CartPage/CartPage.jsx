@@ -7,8 +7,8 @@ import Cart from '../../components/Cart/Cart';
 import Total from '../../components/Cart/Total';
 import axios from 'axios';
 import  {toast}  from 'react-toastify';
-import { ADD_TO_CART, GET_FAIL, REMOVE_FROM_CART } from '../../Reducers/Actions';
 import { ToastErrorSettings } from '../../Services/ToastErrorSettings';
+import { ADD_TO_CART,GET_FAIL, REMOVE_FROM_CART } from '../../Reducers/Actions';
 
 const CartPage = () => {
 
