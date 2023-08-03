@@ -123,7 +123,7 @@ return (
                         <Row className="align-items-center">
                         <Col md={6}>
                         <div className='tumb-img-container'>
-                        <img src={item.image} alt={item.title} className="img-fluid rounded tumb-img px-2 py-2"/>
+                            <Link to={`/product/${item.token}`}><img src={item.image} alt={item.title} className="img-fluid rounded tumb-img px-2 py-2"/></Link>
                             <Link to={`/product/${item.token}`} className='text-shortner mt-2 mb-2'>{item.title}</Link>
                         </div>
                         </Col>

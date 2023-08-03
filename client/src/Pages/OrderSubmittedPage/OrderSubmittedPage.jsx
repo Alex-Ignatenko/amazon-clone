@@ -103,7 +103,7 @@ const OrderSubmittedPage = () => {
                             <Row className="align-items-center">
                               <Col md={6}>
                               <div className='tumb-img-container'>
-                                <img src={item.image} alt={item.title} className="img-fluid rounded tumb-img px-2 py-2"></img>{' '}
+                                <Link to={`/product/${item.token}`}><img src={item.image} alt={item.title} className="img-fluid rounded tumb-img px-2 py-2"></img></Link>
                                 <Link to={`/product/${item.token}`}>{item.title}</Link>
                               </div>
                               </Col>

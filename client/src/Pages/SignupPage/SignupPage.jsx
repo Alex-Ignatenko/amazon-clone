@@ -7,8 +7,11 @@ import axios from 'axios';
 import { toast } from'react-toastify';
 import { USER_SIGNIN } from '../../Reducers/Actions';
 import { ToastErrorSettings } from '../../Services/ToastErrorSettings';
+import { isNameValid, isEmailValid, isMatch} from '../../Services/Validators';
 
 const SignupPage = () => {
+
+  
 
   //states for user information
   const [name, setName] = useState('');
@@ -25,6 +28,8 @@ const SignupPage = () => {
   const {state,dispatch: ctxDispatch} = useContext(store);
   const {userInfo} = state;
 
+
+
   useEffect(() => {
     userInfo && navigate(redirect); //If user is logged in redirect to redirect url
   
@@ -32,10 +37,12 @@ const SignupPage = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+
     if (password !== confirmPassword) {
         toast.error('Passwords do not match', ToastErrorSettings);
         return;
     }
+
     try {
       const {data} = await axios.post('/users/signup', {name, email, password});  
       ctxDispatch({type: USER_SIGNIN,payload: data});
@@ -44,6 +51,8 @@ const SignupPage = () => {
         toast.error("Login error", ToastErrorSettings);
     }
   };
+
+  
 
   return (
     <>
@@ -56,6 +65,10 @@ const SignupPage = () => {
                   <Form.Group className='mb-3' controlId='name'>
                           <Form.Label>Name</Form.Label>
                           <Form.Control className='form-input-bg' type='text' required placeholder='Enter your name' onChange={(e) => setName(e.target.value)}/>
+                          {/* <Form.Control.Feedback type="valid">Looks good!</Form.Control.Feedback>
+                          <Form.Control.Feedback type="invalid">
+                            Please provide a valid name.
+                          </Form.Control.Feedback> */}
                       </Form.Group>
                       <Form.Group className='mb-3' controlId='email'>
                           <Form.Label>Email</Form.Label>
