@@ -1,9 +1,11 @@
 import React, { useEffect, useReducer, useState } from 'react'
-import { SeacrhPageReducer, prices, ratings } from './searchUtils';
+import { prices, ratings } from './searchParams';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { GET_FAIL, GET_REQUEST, GET_SUCCESS } from '../../Reducers/Actions';
+import { ToastErrorSettings } from '../../Services/ToastErrorSettings';
+import { SeacrhPageReducer, initState } from '../../Reducers/SeacrhPageReducer.js';
+import { GET_REQUEST, GET_SUCCESS, GET_FAIL } from '../../Reducers/Actions.js';
 import { GetURLSearchFilter } from '../../Services/GetURLSearchFilter';
 import { Button, Card, Col, Container, Row} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
@@ -16,7 +18,7 @@ import Product from '../../components/Product/Product';
 
 const SearchPage = () => {
 
-    const [{loading,error,products, pages,countProducts},dispatch] = useReducer(SeacrhPageReducer,{loading: true, error: ''});
+    const [{loading,error,products, pages,countProducts},dispatch] = useReducer(SeacrhPageReducer,initState);
     const {search} = useLocation();
     const navigate = useNavigate();
 
@@ -38,7 +40,7 @@ const SearchPage = () => {
                 const {data} = await axios.get('/products/categories');
                 setCategories(data);
             } catch (error) {
-                toast.error(error.message);
+                toast.error(error.message, ToastErrorSettings);
             }
         };
         getCategories();
@@ -52,7 +54,7 @@ const SearchPage = () => {
                 dispatch({type: GET_SUCCESS, payload: data});
             } catch (error) {
                 dispatch({type: GET_FAIL, payload: error});
-                toast.error(error.message);
+                toast.error(error.message, ToastErrorSettings);
             }
         };
         getFilteredProducts();

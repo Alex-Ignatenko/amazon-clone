@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import { store } from '../../context/store';
 import { ProductPageReducer, initState } from '../../Reducers/ProductPageReducer.js';
 import { GET_REQUEST, GET_SUCCESS, GET_FAIL} from '../../Reducers/Actions'
-import { Row, Col, Card, ListGroup } from 'react-bootstrap';
 import  {toast}  from 'react-toastify';
 import axios from 'axios';
 import Loading from '../../components/Loading';

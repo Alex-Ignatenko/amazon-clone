@@ -1,7 +1,7 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
-
 import Product from "../Models/ProductModel.js";
+import GetSearchFilter from "../Services/GetSearchFilter.js";
 
 
 const productRouter = express.Router();
@@ -49,29 +49,9 @@ productRouter.get("/search",expressAsyncHandler(async (req, res) => {
     const { query } = req;
     const pageSize = query.pageSize || PAGE_SIZE;
     const page = query.page || 1;
-    const category = query.category || "";
-    const price = query.price || "";
-    const rating = query.rating || "";
-    const order = query.order || "";
-    const searchQuery = query.query || "";
 
-    //Build search filters
-    const queryFilter = searchQuery && searchQuery === "all" ? {} : { title: { $regex: searchQuery, $options: 'i' } };
-    const categoryFilter = category && category === "all" ? {} : { category: category};
-    const ratingFilter = rating && rating === "all" ? {} : { "rating.rate": { $gte: Number(rating) } };
-    const priceFilter = price && price === "all" ? {} : { price: { $gte: Number(price.split("-")[0]), $lte: Number(price.split("-")[1]) } };
-    
-    //Define sorting options
-    const sortOrder =
-      order === "lowest"
-        ? { price: 1 }
-        : order === "highest"
-        ? { price: -1 }
-        : order === "toprated"  
-        ? { rating: 1 }
-        : order === "newest"
-        ? { createdAt: -1 }
-        : { _id: -1 };
+    //Get search params and sort order from GetFilter service
+    const {queryFilter,categoryFilter,ratingFilter,priceFilter,sortOrder} = GetSearchFilter(query);
 
     //Get products that fit the selected filtering and sorting options   
     const products = await Product.find({...queryFilter,...categoryFilter,...ratingFilter,...priceFilter }).sort(sortOrder).skip((page - 1) * pageSize).limit(pageSize);
@@ -80,7 +60,8 @@ productRouter.get("/search",expressAsyncHandler(async (req, res) => {
         ...categoryFilter,
         ...ratingFilter,
         ...priceFilter,
-      });
+    });
+
     res.send({products,page,countProducts,pages: Math.ceil(countProducts / pageSize)});
 
 }));

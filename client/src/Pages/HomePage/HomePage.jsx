@@ -6,6 +6,8 @@ import  Loading  from "../../components/Loading.jsx";
 import { homePageReducer, initState } from '../../Reducers/HomePageReducer.js';
 import { GET_REQUEST, GET_SUCCESS, GET_FAIL } from '../../Reducers/Actions.js';
 import "./HomePage.css";
+import { toast } from 'react-toastify';
+import { ToastErrorSettings } from '../../Services/ToastErrorSettings.js';
 
 const HomePage = () => {
 
@@ -19,6 +21,7 @@ const HomePage = () => {
                 dispatch({type:GET_SUCCESS,payload:res.data});
             } catch (error) {
                 dispatch({type:GET_FAIL,payload:error.message});
+                toast.error(error.message, ToastErrorSettings);
             }
         };
         getProducts();
