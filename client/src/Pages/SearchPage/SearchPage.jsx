@@ -148,7 +148,7 @@ const SearchPage = () => {
                             </div>
                         )}
                         {products.map((product) =>(
-                            <Col sm={6} lg={4} md={4} className='mt-3' key={product._id}>
+                            <Col sm={6} lg={4} md={4} className='position-item-list' key={product._id}>
                                 <Product product = {product}></Product>
                             </Col>
                         ))}
