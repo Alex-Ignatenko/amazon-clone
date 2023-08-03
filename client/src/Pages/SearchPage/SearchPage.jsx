@@ -139,8 +139,12 @@ const SearchPage = () => {
                             </select>
                         </Col>
                     </Row>
-                    {products.length === 0 && (<MsgBox>No such products found!</MsgBox>)}
                     <Row>
+                        {products.length === 0 && (
+                            <div className="position-item-not-found">
+                                <MsgBox  variant="not-found text-center">No such products found!</MsgBox>
+                            </div>
+                        )}
                         {products.map((product) =>(
                             <Col sm={6} lg={4} md={4} className='mt-3' key={product._id}>
                                 <Product product = {product}></Product>

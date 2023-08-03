@@ -15,6 +15,10 @@ a {
   text-decoration: none;
 }
 
+button{
+  cursor: pointer;
+}
+
 .main-app-container{
   min-height: 100vh;
 }
@@ -54,9 +58,20 @@ code {
 
 .out-of-stock-bg{
   background-color: #353538 !important;
-  opacity: 1 !important;
+  opacity: 0.52 !important;
   font-weight: bold;
 }
+.not-found{
+  background-color: #353538 !important;
+  opacity: 0.52 !important;
+  color: white;
+}
+
+
+.not-found a {
+  color:#d3a62c;
+}
+
 .tumb-img-container{
   display: flex;
   flex-direction: column;

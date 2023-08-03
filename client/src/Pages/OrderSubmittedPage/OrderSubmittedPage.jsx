@@ -74,7 +74,7 @@ const OrderSubmittedPage = () => {
                           Delivered at {order.deliveredAt}
                         </MsgBox>
                       ) : (
-                        <MsgBox variant="danger">Not Delivered</MsgBox>
+                        <MsgBox variant="not-found">Not Delivered</MsgBox>
                       )}
                     </Card.Body>
                   </Card>
@@ -90,7 +90,7 @@ const OrderSubmittedPage = () => {
                           Paid at {order.paidAt}
                         </MsgBox>
                       ) : (
-                        <MsgBox variant="danger">Not Paid</MsgBox>
+                        <MsgBox variant="not-found">Not Paid</MsgBox>
                       )}
                     </Card.Body>
                   </Card>
