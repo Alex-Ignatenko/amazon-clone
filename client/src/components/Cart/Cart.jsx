@@ -7,7 +7,7 @@ const Cart = ({cartItems, updateCartHandler, removeItemHandler}) => {
   return (
     <div>
         {cartItems.length === 0? (
-          <MsgBox>Your cart is empty. {<Link to="/">Back to Home</Link>}</MsgBox>  
+          <MsgBox className="pt-2" variant="">Your cart is empty. {<Link to="/">Back to Home</Link>}</MsgBox>  
         ) : (
             <ListGroup>
                 {
