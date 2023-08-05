@@ -116,14 +116,14 @@ return (
             </Card>
             <Card className="mb-4">
                 <Card.Body className='items-card'>
-                <Card.Title><strong>Items</strong></Card.Title>
+                <Card.Title><strong>Cart</strong></Card.Title>
                 <ListGroup variant="flush" className='m-1 p-1'>
                     {cart.cartItems.map((item) => (
                     <ListGroup.Item key={item._id}>
                         <Row className="align-items-center">
                         <Col md={6}>
                         <div className='tumb-img-container'>
-                        <img src={item.image} alt={item.title} className="img-fluid rounded tumb-img px-2 py-2"/>
+                            <Link to={`/product/${item.token}`}><img src={item.image} alt={item.title} className="img-fluid rounded tumb-img px-2 py-2"/></Link>
                             <Link to={`/product/${item.token}`} className='text-shortner mt-2 mb-2'>{item.title}</Link>
                         </div>
                         </Col>
@@ -173,7 +173,7 @@ return (
                     </ListGroup.Item>
                     <ListGroup.Item>
                     <div className="d-grid pt-2">
-                        <Button type="button" onClick={submitOrderHandler} disabled={cart.cartItems.length === 0}>Submit Order</Button>
+                        <Button type="button" className={cart.cartItems.length === 0 ? "out-of-stock-bg" : "primary"} onClick={submitOrderHandler} disabled={cart.cartItems.length === 0}>Submit Order</Button>
                     </div>
                     <div>
                         {loading && <Loading />}

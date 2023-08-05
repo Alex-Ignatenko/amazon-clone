@@ -1,9 +1,11 @@
 import React, { useEffect, useReducer, useState } from 'react'
-import { SeacrhPageReducer, prices, ratings } from './searchUtils';
+import { prices, ratings } from './searchParams';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { GET_FAIL, GET_REQUEST, GET_SUCCESS } from '../../Reducers/Actions';
+import { ToastErrorSettings } from '../../Services/ToastErrorSettings';
+import { SeacrhPageReducer, initState } from '../../Reducers/SeacrhPageReducer.js';
+import { GET_REQUEST, GET_SUCCESS, GET_FAIL } from '../../Reducers/Actions.js';
 import { GetURLSearchFilter } from '../../Services/GetURLSearchFilter';
 import { Button, Card, Col, Container, Row} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
@@ -16,7 +18,7 @@ import Product from '../../components/Product/Product';
 
 const SearchPage = () => {
 
-    const [{loading,error,products, pages,countProducts},dispatch] = useReducer(SeacrhPageReducer,{loading: true, error: ''});
+    const [{loading,error,products, pages,countProducts},dispatch] = useReducer(SeacrhPageReducer,initState);
     const {search} = useLocation();
     const navigate = useNavigate();
 
@@ -38,7 +40,7 @@ const SearchPage = () => {
                 const {data} = await axios.get('/products/categories');
                 setCategories(data);
             } catch (error) {
-                toast.error(error.message);
+                toast.error(error.message, ToastErrorSettings);
             }
         };
         getCategories();
@@ -52,7 +54,7 @@ const SearchPage = () => {
                 dispatch({type: GET_SUCCESS, payload: data});
             } catch (error) {
                 dispatch({type: GET_FAIL, payload: error});
-                toast.error(error.message);
+                toast.error(error.message, ToastErrorSettings);
             }
         };
         getFilteredProducts();
@@ -139,10 +141,14 @@ const SearchPage = () => {
                             </select>
                         </Col>
                     </Row>
-                    {products.length === 0 && (<MsgBox>No such products found!</MsgBox>)}
                     <Row>
+                        {products.length === 0 && (
+                            <div className="position-item-not-found">
+                                <MsgBox  variant="not-found text-center">No such products found!</MsgBox>
+                            </div>
+                        )}
                         {products.map((product) =>(
-                            <Col sm={6} lg={4} md={4} className='mt-3' key={product._id}>
+                            <Col sm={6} lg={4} md={4} className='position-item-list' key={product._id}>
                                 <Product product = {product}></Product>
                             </Col>
                         ))}

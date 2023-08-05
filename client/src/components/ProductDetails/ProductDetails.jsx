@@ -12,8 +12,8 @@ function ProductDetails({product, addToCart}) {
     <div>
       <Row className="container-main-details">
         <Col sm={3} md={3} lg={4}>
-        <Card className="img-card">
-                <Card.Body className=" img-card-body">
+            <Card className="img-card">
+                <Card.Body className="img-card-body">
                     <img src={product.image } alt={product.title}
                         onError={({ currentTarget }) => {
                         currentTarget.onerror = null; // prevents looping

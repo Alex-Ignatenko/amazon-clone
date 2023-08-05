@@ -41,21 +41,21 @@ const Header = () => {
                         <nav className="d-flex mx-auto align-items-center">
                             <SearchBox></SearchBox>
                         </nav>
-                        <i className="fas fa-solid fa-user fa-2x text-white px-2"></i>
+                        <i className="fas fa-solid fa-user fa-2x text-white px-2"/>
                         {userInfo? (
                                 <NavDropdown className="me-4 header-text" title={"Welcome "+userInfo.name}>
-                                    <NavDropdown.Item to="#signout" onClick={signOutHandler} className="dropdown-item">Sign out</NavDropdown.Item>     
+                                    <NavDropdown.Item to="#signout" onClick={signOutHandler} className="dropdown-item"><i className="fas fa-solid fa-sign-out-alt px-2"/>Sign out</NavDropdown.Item>     
                                 </NavDropdown>
                                     ):(
-                                <NavDropdown className="me-4 header-text" title="sign up">
-                                        <NavDropdown.Item onClick={signInHandler} className="dropdown-item">Sign In</NavDropdown.Item>
+                                <NavDropdown className="me-4 header-text" title="Account">
+                                        <NavDropdown.Item onClick={signInHandler} className="dropdown-item"><i className="fas fa-solid fa-sign-in-alt  px-2"/>Sign In</NavDropdown.Item>
                                         <NavDropdown.Divider/>
-                                        <NavDropdown.Item onClick={signUpHandler} className="dropdown-item">Sign Up</NavDropdown.Item>
+                                        <NavDropdown.Item onClick={signUpHandler} className="dropdown-item"><i className="fas fa-solid fa-user-plus px-2"/>Sign Up</NavDropdown.Item>
                                 </NavDropdown>      
                         )}
                 </Container>
                 <Link to="/cart" className="me-5">
-                        <i className="fas fa-shopping-cart fa-2x text-white"></i>
+                        <i className="fas fa-shopping-cart fa-2x text-white"/>
                             {cartItems.length > 0 && (
                                 <Badge pill bg="" style={{backgroundColor: '#f0c040'}} className="cart-badge">
                                     {" "}

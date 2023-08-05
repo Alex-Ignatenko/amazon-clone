@@ -32,7 +32,7 @@ const CartPage = () => {
             ctxDispatch({type: ADD_TO_CART,payload: {...item,quantity}});
         } catch (error) {
             ctxDispatch({type: GET_FAIL,payload: error.message});
-            toast.error("Error",ToastErrorSettings);
+            toast.error(error.message,ToastErrorSettings);
         }
     };
 

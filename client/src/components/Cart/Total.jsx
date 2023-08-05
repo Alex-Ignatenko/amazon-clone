@@ -21,7 +21,7 @@ const Total = ({cartItems, checkoutHandler}) => {
                 </ListGroup.Item>
                 <ListGroup.Item>
                     <div className='d-grid pt-2'>
-                        <Button type="button" variant="primary" onClick={checkoutHandler} disabled={cartItems.length === 0}>Checkout</Button>
+                        <Button type="button" className={cartItems.length > 0 ? "primary" : "out-of-stock-bg" } onClick={checkoutHandler} disabled={cartItems.length === 0}>Checkout</Button>
                     </div>
                 </ListGroup.Item>
             </ListGroup>

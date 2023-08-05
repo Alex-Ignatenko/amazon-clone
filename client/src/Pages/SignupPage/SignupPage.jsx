@@ -8,13 +8,17 @@ import { toast } from'react-toastify';
 import { USER_SIGNIN } from '../../Reducers/Actions';
 import { ToastErrorSettings } from '../../Services/ToastErrorSettings';
 
+
 const SignupPage = () => {
+
+  
 
   //states for user information
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [validated, setValidated] = useState(false);
 
   const navigate = useNavigate();
   const {search} = useLocation();
@@ -25,6 +29,8 @@ const SignupPage = () => {
   const {state,dispatch: ctxDispatch} = useContext(store);
   const {userInfo} = state;
 
+
+
   useEffect(() => {
     userInfo && navigate(redirect); //If user is logged in redirect to redirect url
   
@@ -32,42 +38,53 @@ const SignupPage = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-        toast.error('Passwords do not match', ToastErrorSettings);
-        return;
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
     }
-    try {
-      const {data} = await axios.post('/users/signup', {name, email, password});  
-      ctxDispatch({type: USER_SIGNIN,payload: data});
-      navigate(redirect || '/');
-    } catch (error) {
-        toast.error("Login error", ToastErrorSettings);
+    else {
+      try {
+        const {data} = await axios.post('/users/signup', {name, email, password});  
+        ctxDispatch({type: USER_SIGNIN,payload: data});
+        navigate(redirect || '/');
+      } catch (error) {
+          toast.error("Login error", ToastErrorSettings);
+      }
     }
+    setValidated(true);
   };
 
   return (
     <>
-        <Container className='small-container'>
             <Title title="Sign In" ></Title>
             <h1 className="my-4">Sign Up</h1>
             <Card>
               <Card.Body>
-                <Form onSubmit={submitHandler}>
+              <Container>
+                <Form noValidate validated={validated} onSubmit={submitHandler}>
                   <Form.Group className='mb-3' controlId='name'>
                           <Form.Label>Name</Form.Label>
                           <Form.Control className='form-input-bg' type='text' required placeholder='Enter your name' onChange={(e) => setName(e.target.value)}/>
+                          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                          <Form.Control.Feedback type="invalid">Please enter your name.</Form.Control.Feedback>
                       </Form.Group>
                       <Form.Group className='mb-3' controlId='email'>
                           <Form.Label>Email</Form.Label>
                           <Form.Control className='form-input-bg' type='email' required placeholder='Enter your email' onChange={(e) => setEmail(e.target.value)}/>
+                          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                          <Form.Control.Feedback type="invalid">Please provide a valid email.</Form.Control.Feedback>
                       </Form.Group>
                       <Form.Group className='mb-3' controlId='password'>
                           <Form.Label>Password</Form.Label>
                           <Form.Control className='form-input-bg' type='password' required placeholder='Enter your password' onChange={(e) => setPassword(e.target.value)}/>
+                          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                          <Form.Control.Feedback type="invalid">Please provide a valid password.</Form.Control.Feedback>
                       </Form.Group>
                       <Form.Group className='mb-3' controlId='confirm-password'>
                           <Form.Label>Confirm Password</Form.Label>
-                          <Form.Control className='form-input-bg' type='password' required placeholder='Confirm password' onChange={(e) => setConfirmPassword(e.target.value)}/>
+                          <Form.Control className='form-input-bg' type='password' required pattern={password} placeholder='Confirm password' onChange={(e) => setConfirmPassword(e.target.value)}/>
+                          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                          <Form.Control.Feedback type="invalid">Please match passwords.</Form.Control.Feedback>
                       </Form.Group>
                       <div className='py-4 d-grid'>
                           <Button type="submit" variant="primary">Sign Up</Button>
@@ -76,9 +93,9 @@ const SignupPage = () => {
                           Already have an account? <Link to={`/signin?redirect=${redirect}`}>Sign in</Link>
                       </div>
                 </Form>
+                </Container>
               </Card.Body>
             </Card>
-        </Container>
     </>
   )
 }

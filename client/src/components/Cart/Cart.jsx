@@ -7,7 +7,7 @@ const Cart = ({cartItems, updateCartHandler, removeItemHandler}) => {
   return (
     <div>
         {cartItems.length === 0? (
-          <MsgBox className="pt-2" variant="">Your cart is empty. {<Link to="/">Back to Home</Link>}</MsgBox>  
+          <MsgBox className="pt-2" variant="not-found text-center">Your cart is empty. {<Link to="/">Back to Home</Link>}</MsgBox>  
         ) : (
             <ListGroup>
                 {
@@ -16,27 +16,27 @@ const Cart = ({cartItems, updateCartHandler, removeItemHandler}) => {
                         <Row className="align-items-center">
                             <Col md={4}>
                                 <div className='tumb-img-container'>
-                                    <img src={item.image} alt={item.name}  className='img-fluid rounded tumb-img px-4 py-2'/>
-                                    <Link className="text-shortner px-2" to={`/product/${item.token}`}>{item.title}</Link>
+                                    <Link to={`/product/${item.token}`}><img src={item.image} alt={item.name}  className='img-fluid rounded tumb-img px-4 py-2'/></Link>
+                                    <Link className="text-shortner px-4" to={`/product/${item.token}`}>{item.title}</Link>
                                 </div>
                             </Col>
-                            <Col md={3}>
-                                <Button onClick={() => {updateCartHandler(item,item.quantity -1)}} variant='light' disabled={item.quantity === 1}> 
-                                    <i className="fas fa-minus-circle"></i>
-                                </Button>
-                                {' '}
-                                <span>{item.quantity}</span>
-                                {' '}
-                                <Button onClick={() => {updateCartHandler(item,item.quantity +1)}} variant='light' disabled={item.quantity === item.countInStock}> 
-                                    <i className="fas fa-plus-circle"></i>
-                                </Button>
+                            <Col md={4}>
+                                <div className='px-2'>
+                                    <Button onClick={() => {updateCartHandler(item,item.quantity -1)}} className={ item.quantity === 1 ? "out-of-stock-bg" : "primary"} disabled={item.quantity === 1}> 
+                                        <i className="fas fa-minus-circle"></i>
+                                    </Button>
+                                    {' '}
+                                    <span className='px-2'>{item.quantity}</span>
+                                    {' '}
+                                    <Button onClick={() => {updateCartHandler(item,item.quantity +1)}} className={item.quantity === item.countInStock ? "out-of-stock-bg" : "primary"} disabled={item.quantity === item.countInStock}> 
+                                        <i className="fas fa-plus-circle"></i>
+                                    </Button>
+                                </div>
                                 {' '}
                             </Col>
+                            <Col md={2}>{item.price}$</Col>
                             <Col md={2}>
-                                {item.price}$
-                            </Col>
-                            <Col md={2}>
-                                <Button onClick={() => {removeItemHandler(item)}} variant='light'> 
+                                <Button onClick={() => {removeItemHandler(item)}} variant='danger'> 
                                     <i className="fas fa-trash"></i>
                                 </Button>
                             </Col>

@@ -13,6 +13,7 @@ const SigninPage = () => {
   //states for user information
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [validated, setValidated] = useState(false);
 
   const navigate = useNavigate();
   const {search} = useLocation();
@@ -30,14 +31,24 @@ const SigninPage = () => {
 
 
   const submitHandler = async (e) => {
+
     e.preventDefault();
-    try {
-      const {data} = await axios.post('/users/signin', {email, password});  
-      ctxDispatch({type: USER_SIGNIN,payload: data});
-      navigate(redirect || '/');
-    } catch (error) {
-      toast.error("Login Error", ToastErrorSettings);
+
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
     }
+    else{
+      try {
+        const {data} = await axios.post('/users/signin', {email, password});  
+        ctxDispatch({type: USER_SIGNIN,payload: data});
+        navigate(redirect || '/');
+      } catch (error) {
+        toast.error("Login Error", ToastErrorSettings);
+      }
+    }
+    setValidated(true);
+
   };
 
   return (
@@ -46,15 +57,19 @@ const SigninPage = () => {
     <h1 className="my-4">Sign In</h1>
     <Card>
       <Card.Body>
-        <Container className='small-container'>
-            <Form onSubmit={submitHandler}>
+        <Container>
+            <Form noValidate validated={validated} onSubmit={submitHandler}>
                 <Form.Group className='mb-3' controlId='email'>
                     <Form.Label>Email</Form.Label>
                     <Form.Control className='form-input-bg' type='email' required placeholder='Enter your email' onChange={(e) => setEmail(e.target.value)}/>
+                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">Please provide a valid email.</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group className='mb-3' controlId='password'>
                     <Form.Label>Password</Form.Label>
                     <Form.Control className='form-input-bg' type='password' required placeholder='Enter your password' onChange={(e) => setPassword(e.target.value)}/>
+                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">Please provide a valid password.</Form.Control.Feedback>
                 </Form.Group>
                 <div className='py-4 d-grid'>
                     <Button type="submit" variant="primary">Sign In</Button>

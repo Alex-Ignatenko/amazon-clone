@@ -6,10 +6,19 @@
     justify-content: center;
     text-align: center;
     height: 100%;
-    
+    transition: all 0.3s ease-in-out;
+    box-shadow: none;
+    scale: 1;
+    z-index: 1;
     /* outline: solid 1px black ; */
 }
- .img-card-body {
+.img-card:hover{
+    box-shadow: 0px 5px  #888;
+    transform: translate(225px, 100px);
+    scale: 2;
+}
+
+.img-card-body {
     display: flex;
     flex-direction: column;
     justify-content: center;
