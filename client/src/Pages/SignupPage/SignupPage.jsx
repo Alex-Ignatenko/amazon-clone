@@ -38,7 +38,6 @@ const SignupPage = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.stopPropagation();
@@ -61,7 +60,7 @@ const SignupPage = () => {
             <h1 className="my-4">Sign Up</h1>
             <Card>
               <Card.Body>
-              <Container className='small-container'>
+              <Container>
                 <Form noValidate validated={validated} onSubmit={submitHandler}>
                   <Form.Group className='mb-3' controlId='name'>
                           <Form.Label>Name</Form.Label>

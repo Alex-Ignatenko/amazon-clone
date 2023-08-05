@@ -57,7 +57,7 @@ const SigninPage = () => {
     <h1 className="my-4">Sign In</h1>
     <Card>
       <Card.Body>
-        <Container className='small-container'>
+        <Container>
             <Form noValidate validated={validated} onSubmit={submitHandler}>
                 <Form.Group className='mb-3' controlId='email'>
                     <Form.Label>Email</Form.Label>
