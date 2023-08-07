@@ -14,7 +14,7 @@ export const addToCartHandler = async (product,cartItems,ctxDispatch) => {
         //Get the selected prtoduct from server
         const { data } = await axios.get('/products/id/'+ product._id);
         if (data.countInStock < quantity) { 
-            toast.error("Sorry, we don't have enough in stock", ToastErrorSettings);
+            toast.error("Sorry, we don't have more in stock", ToastErrorSettings);
             return;
         }
         //user a passed dispatch function to add the item to the cart via storeReducer hook

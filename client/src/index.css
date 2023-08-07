@@ -56,6 +56,23 @@ code {
   background-color: #d3a62c;
 }
 
+
+
+.btn-success,
+.btn-outline-success {
+  background-color: rgb(21, 115, 71);; 
+  color: #f0c040;
+  border-width: 0px;
+  font-weight: bold;
+}
+.btn-success:hover,
+.btn-success:focus,
+.btn-outline-success:hover,
+.btn-outline-success:focus {
+  color: #d3a62c;
+  background-color: rgb(15, 83, 52);
+}
+
 .out-of-stock-bg{
   background-color: #353538 !important;
   opacity: 0.52 !important;
