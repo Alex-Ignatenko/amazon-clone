@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Button, Card, Container, Form} from 'react-bootstrap'
+import { Button, Card, Container, Form, InputGroup} from 'react-bootstrap'
 import Title from '../../components/Title/Title';
 import { Link, useLocation, useNavigate } from'react-router-dom';
 import { store } from '../../context/store';
@@ -19,6 +19,8 @@ const SignupPage = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [validated, setValidated] = useState(false);
+  const [pwVisability, setPwVisability] = useState(false);
+  const [pwConfirmVisability, setPwConfirmVisability] = useState(false);
 
   const navigate = useNavigate();
   const {search} = useLocation();
@@ -30,11 +32,18 @@ const SignupPage = () => {
   const {userInfo} = state;
 
 
-
   useEffect(() => {
     userInfo && navigate(redirect); //If user is logged in redirect to redirect url
   
   },[navigate, redirect, userInfo]);
+
+  const togglePwVisability = () => {
+    setPwVisability(!pwVisability);
+  }
+
+  const togglePwConfirmVisability = () => {
+    setPwConfirmVisability(!pwConfirmVisability);
+  }
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -76,15 +85,25 @@ const SignupPage = () => {
                       </Form.Group>
                       <Form.Group className='mb-3' controlId='password'>
                           <Form.Label>Password</Form.Label>
-                          <Form.Control className='form-input-bg' type='password' required placeholder='Enter your password' onChange={(e) => setPassword(e.target.value)}/>
-                          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                          <Form.Control.Feedback type="invalid">Please provide a valid password.</Form.Control.Feedback>
+                          <InputGroup>
+                              <Form.Control className='form-input-bg' type={ pwVisability ? 'text' : 'password'} required placeholder='Enter your password' onChange={(e) => setPassword(e.target.value)}/>
+                              <Button className='pw-eye-btn' onClick={togglePwVisability}>
+                                {pwVisability? (<i className='fas fa-eye-slash mx-2'></i>) : (<i className='fas fa-eye mx-2'></i>) }
+                              </Button>
+                              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                              <Form.Control.Feedback type="invalid">Please provide a valid password.</Form.Control.Feedback>
+                          </InputGroup>
                       </Form.Group>
                       <Form.Group className='mb-3' controlId='confirm-password'>
                           <Form.Label>Confirm Password</Form.Label>
-                          <Form.Control className='form-input-bg' type='password' required pattern={password} placeholder='Confirm password' onChange={(e) => setConfirmPassword(e.target.value)}/>
-                          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                          <Form.Control.Feedback type="invalid">Please match passwords.</Form.Control.Feedback>
+                          <InputGroup>
+                            <Form.Control className='form-input-bg' type={ pwConfirmVisability ? 'text' : 'password'} required pattern={password} placeholder='Confirm password' onChange={(e) => setConfirmPassword(e.target.value)}/>
+                            <Button className='pw-eye-btn' onClick={togglePwConfirmVisability}>
+                                {pwConfirmVisability? (<i className='fas fa-eye-slash mx-2'></i>) : (<i className='fas fa-eye mx-2'></i>) }
+                            </Button>
+                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                            <Form.Control.Feedback type="invalid">Please match passwords.</Form.Control.Feedback>
+                          </InputGroup>
                       </Form.Group>
                       <div className='py-4 d-grid'>
                           <Button type="submit" variant="primary">Sign Up</Button>
