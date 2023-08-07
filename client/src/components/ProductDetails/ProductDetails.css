@@ -13,8 +13,10 @@
     /* outline: solid 1px black ; */
 }
 .img-card:hover{
+    width: 100%;
+    height: 35rem;
     box-shadow: 0px 5px  #888;
-    transform: translate(225px, 100px);
+    transform: translate(235px, 135px);
     scale: 2;
 }
 
