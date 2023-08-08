@@ -42,6 +42,7 @@ const Header = () => {
                             <SearchBox></SearchBox>
                         </nav>
                         <i className="fas fa-solid fa-user fa-2x text-white px-2"/>
+                        <span>
                         {userInfo? (
                                 <NavDropdown className="me-4 header-text" title={"Welcome "+userInfo.name}>
                                     <NavDropdown.Item to="#signout" onClick={signOutHandler} className="dropdown-item"><i className="fas fa-solid fa-sign-out-alt px-2"/>Sign out</NavDropdown.Item>     
@@ -53,17 +54,18 @@ const Header = () => {
                                         <NavDropdown.Item onClick={signUpHandler} className="dropdown-item"><i className="fas fa-solid fa-user-plus px-2"/>Sign Up</NavDropdown.Item>
                                 </NavDropdown>      
                         )}
+                        </span>
                 </Container>
-                <Link to="/cart" className="me-5">
-                        <i className="fas fa-shopping-cart fa-2x text-white"/>
-                            {cartItems.length > 0 && (
-                                <Badge pill bg="" style={{backgroundColor: '#f0c040'}} className="cart-badge">
-                                    {" "}
-                                    {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
-                                </Badge>
-                            )}
-                        <span>{" "}Cart</span>
-                </Link>
+                    <Link to="/cart" className="me-5">
+                            <i className="fas fa-shopping-cart fa-2x text-white"/>
+                                {cartItems.length > 0 && (
+                                    <Badge pill bg="" style={{backgroundColor: '#f0c040'}} className="cart-badge">
+                                        {" "}
+                                        {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
+                                    </Badge>
+                                )}
+                            <span>{" "}Cart</span>
+                    </Link>         
              </Navbar>
         </>
     );
